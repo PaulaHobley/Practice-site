@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tools | Experimental Web Playground</title>
+
+  <style>
+    :root {
+      --bg: #faf7fc;
+      --surface: #f1edf6;
+      --text: #1f1b24;
+      --heading: #2c2140;
+      --accent: #9466ec;
+      --accent-strong: #3e236e;
+      --focus: #ffbf47;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--accent-strong);
+      padding: 1rem;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:focus,
+    nav a:hover {
+      text-decoration: underline;
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    main {
+      padding: 1.5rem;
+      max-width: 800px;
+    }
+
+    h1, h2 {
+      color: var(--heading);
+    }
+
+    section {
+      background: var(--surface);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    li {
+      margin-bottom: 1rem;
+    }
+
+    li p {
+      margin: 0.25rem 0 0 0;
+    }
+
+    a {
+      color: var(--accent-strong);
+    }
+
+    a:focus,
+    a:hover {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    footer {
+      background: var(--accent-strong);
+      color: white;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: auto;
+    }
+
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+      background: white;
+      color: black;
+      padding: 0.5rem;
+      outline: 3px solid var(--focus);
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header role="banner">
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tools.html" aria-current="page">Tools</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <h1>Tools</h1>
+
+    <p>
+      A collection of experimental, accessible tools built while learning, testing, and occasionally side-eyeing humanity.
+    </p>
+
+    <section aria-labelledby="tool-list-heading">
+      <h2 id="tool-list-heading">Available tools</h2>
+
+      <ul>
+        <li>
+          <a href="snark-generator.html">Snark Generator</a>
+          <p>
+            Generates appropriately spicy responses to guide dog etiquette violations, from mildly unimpressed to “the dog bites”.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <p>Experimental Web Playground</p>
+  </footer>
+
+</body>
+</html>
