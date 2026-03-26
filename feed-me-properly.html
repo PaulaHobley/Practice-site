@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feed Me Properly | Experimental Web Playground</title>
+  <style>
+    :root {
+      --bg: #faf9fc;
+      --surface: #f1edf6;
+      --text: #1f1b24;
+      --heading: #2c2140;
+      --accent: #5f3fa0;
+      --accent-hover: #4b2f83;
+      --border-subtle: #c9bed8;
+      --border-strong: #7a6896;
+      --focus: #4b2f83;
+      --success-bg: #eef8ef;
+      --warning-bg: #fff5df;
+      --info-bg: #eef4ff;
+      --max-width: 65ch;
+      --space-1: 0.5rem;
+      --space-2: 1rem;
+      --space-3: 1.5rem;
+      --space-4: 2rem;
+      --space-5: 3rem;
+      --radius: 0.5rem;
+      --line-height: 1.6;
+      --font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-stack);
+      line-height: var(--line-height);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.15em;
+    }
+
+    a:hover,
+    a:focus-visible {
+      color: var(--accent-hover);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translateY(-140%);
+      background: var(--heading);
+      color: var(--bg);
+      padding: 0.75rem 1rem;
+      z-index: 1000;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header,
+    .site-main,
+    .site-footer {
+      width: min(100% - 2rem, 72rem);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      padding: var(--space-3) 0 var(--space-2);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .site-title {
+      margin: 0 0 var(--space-2);
+      font-size: clamp(1.75rem, 4vw, 2.4rem);
+      line-height: 1.2;
+      color: var(--heading);
+    }
+
+    .site-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-title a:hover,
+    .site-title a:focus-visible {
+      text-decoration: underline;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.15em;
+    }
+
+    .site-nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .site-nav a {
+      display: inline-block;
+      padding: 0.35rem 0.15rem;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    .site-nav a[aria-current="page"] {
+      font-weight: 700;
+      text-decoration-thickness: 0.12em;
+    }
+
+    .site-main {
+      padding: var(--space-5) 0;
+    }
+
+    .intro,
+    .content-section,
+    .tool-layout {
+      max-width: var(--max-width);
+    }
+
+    .intro {
+      margin-bottom: var(--space-5);
+    }
+
+    .intro h1 {
+      margin: 0 0 var(--space-2);
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      color: var(--heading);
+    }
+
+    .intro p {
+      margin: 0 0 var(--space-2);
+      font-size: 1.08rem;
+    }
+
+    .content-section {
+      margin-bottom: var(--space-5);
+      padding: var(--space-3);
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+    }
+
+    .content-section h2,
+    .content-section h3 {
+      margin-top: 0;
+      margin-bottom: var(--space-2);
+      line-height: 1.2;
+      color: var(--heading);
+    }
+
+    .content-section h2 {
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+    }
+
+    .content-section h3 {
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol {
+      margin-top: 0;
+      margin-bottom: var(--space-2);
+    }
+
+    ul,
+    ol {
+      padding-left: 1.25rem;
+    }
+
+    li + li {
+      margin-top: 0.5rem;
+    }
+
+    .helper-text {
+      font-size: 0.95rem;
+    }
+
+    .tool-layout {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    form {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    label,
+    legend {
+      font-weight: 700;
+      color: var(--heading);
+    }
+
+    textarea,
+    select,
+    input[type="text"] {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid var(--border-strong);
+      border-radius: 0.4rem;
+      background: #ffffff;
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 12rem;
+      resize: vertical;
+    }
+
+    fieldset {
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: var(--space-2);
+      margin: 0;
+    }
+
+    .checkbox-group {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: var(--space-2);
+    }
+
+    .checkbox-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+
+    .checkbox-option input {
+      margin-top: 0.2rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    button {
+      border: 2px solid var(--accent);
+      border-radius: 0.45rem;
+      padding: 0.8rem 1rem;
+      font: inherit;
+      font-weight: 700;
+      background: var(--accent);
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #ffffff;
+      color: var(--accent);
+    }
+
+    button:hover,
+    button:focus-visible {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #ffffff;
+    }
+
+    button.secondary:hover,
+    button.secondary:focus-visible {
+      background: var(--surface);
+      color: var(--accent-hover);
+    }
+
+    .results[hidden] {
+      display: none;
+    }
+
+    .callout {
+      border-left: 0.45rem solid var(--accent);
+      padding: var(--space-2);
+      background: #ffffff;
+      border-radius: 0.35rem;
+      margin-bottom: var(--space-2);
+    }
+
+    .success-box {
+      background: var(--success-bg);
+      border: 1px solid #7ca884;
+    }
+
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid #c29c47;
+    }
+
+    .info-box {
+      background: var(--info-bg);
+      border: 1px solid #7390c7;
+    }
+
+    .metric-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--space-2);
+    }
+
+    .metric-list li {
+      margin: 0 0 0.75rem;
+      padding: 0.75rem;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.35rem;
+    }
+
+    .small-note {
+      font-size: 0.95rem;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .site-footer {
+      padding: var(--space-3) 0 var(--space-5);
+      border-top: 1px solid var(--border-subtle);
+      max-width: var(--max-width);
+    }
+
+    .site-footer p {
+      margin: 0 0 var(--space-1);
+    }
+
+    @media (max-width: 40rem) {
+      .site-header,
+      .site-main,
+      .site-footer {
+        width: min(100% - 1.5rem, 72rem);
+      }
+
+      .content-section {
+        padding: var(--space-2);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <p class="site-title"><a href="index.html">Experimental Web Playground</a></p>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experiments.html">Experiments</a></li>
+        <li><a href="tools.html" aria-current="page">Tools</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content" class="site-main">
+    <section class="intro">
+      <h1>Feed Me Properly</h1>
+      <p>
+        A rules-based nutrition guide for real life, vague meal descriptions, and days where the food situation is being held together with yoghurt, caffeine, and optimism.
+      </p>
+      <p>
+        Paste what you ate, choose your main goal, add any relevant filters, and the tool will give you a practical read on likely strengths, likely gaps, useful next steps, and trusted Australian resources.
+      </p>
+    </section>
+
+    <section class="content-section" aria-labelledby="tool-heading">
+      <h2 id="tool-heading">Try the guide</h2>
+      <div class="tool-layout">
+        <form id="nutrition-form" novalidate>
+          <div>
+            <label for="meal-input">What did you eat or what are you planning to eat?</label>
+            <p id="meal-help" class="helper-text">Include as much detail as you have. Brand names, approximate amounts, and timing help, but rough descriptions are fine.</p>
+            <textarea id="meal-input" name="meal-input" aria-describedby="meal-help">I had a latte, muesli with yoghurt, a piece of pizza with cheese and salami, and later a peach.</textarea>
+          </div>
+
+          <div>
+            <label for="goal-select">Main goal</label>
+            <select id="goal-select" name="goal-select">
+              <option value="general">General balance</option>
+              <option value="protein">Protein support</option>
+              <option value="iron">Iron support</option>
+              <option value="fibre">Fibre support</option>
+              <option value="energy">Energy support</option>
+              <option value="low-effort">Low-effort meals</option>
+              <option value="budget">Budget-friendly food ideas</option>
+            </select>
+          </div>
+
+          <fieldset>
+            <legend>Useful context</legend>
+            <p class="helper-text">These filters adjust the advice. Leave them unticked if they do not apply.</p>
+            <div class="checkbox-group">
+              <label class="checkbox-option"><input type="checkbox" name="context" value="vegetarian"> I want vegetarian-friendly advice</label>
+              <label class="checkbox-option"><input type="checkbox" name="context" value="low-appetite"> I have low appetite or I am grazing rather than eating full meals</label>
+              <label class="checkbox-option"><input type="checkbox" name="context" value="sensory"> Texture, smell, or sensory tolerance matters</label>
+              <label class="checkbox-option"><input type="checkbox" name="context" value="busy"> I need very low-effort suggestions</label>
+              <label class="checkbox-option"><input type="checkbox" name="context" value="medical"> I am asking something that might overlap with a medical issue</label>
+            </div>
+          </fieldset>
+
+          <div class="button-row">
+            <button type="submit">Analyse food entry</button>
+            <button type="button" class="secondary" id="save-entry">Save entry on this device</button>
+            <button type="button" class="secondary" id="load-entry">Load saved entry</button>
+            <button type="button" class="secondary" id="sample-entry">Use sample entry</button>
+            <button type="reset" class="secondary">Clear form</button>
+          </div>
+        </form>
+
+        <section id="results" class="results content-section" aria-labelledby="results-heading" hidden>
+          <h2 id="results-heading" tabindex="-1">Results</h2>
+          <p id="status-message" class="callout info-box" role="status" aria-live="polite"></p>
+
+          <div class="callout success-box">
+            <h3>Likely strengths</h3>
+            <ul id="strengths-list"></ul>
+          </div>
+
+          <div class="callout warning-box">
+            <h3>Likely gaps or watch-outs</h3>
+            <ul id="gaps-list"></ul>
+          </div>
+
+          <div class="callout info-box">
+            <h3>Confidence and recognised foods</h3>
+            <p id="confidence-text"></p>
+            <ul id="recognized-foods" class="metric-list"></ul>
+          </div>
+
+          <div class="callout">
+            <h3>Practical next steps</h3>
+            <ul id="suggestions-list"></ul>
+          </div>
+
+          <div class="callout">
+            <h3>Australian resources</h3>
+            <ul id="resources-list"></ul>
+          </div>
+
+          <div class="callout info-box">
+            <h3>Important note</h3>
+            <p id="disclaimer-text"></p>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="secondary" id="export-results">Export results as text</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="content-section" aria-labelledby="how-it-works-heading">
+      <h2 id="how-it-works-heading">How it works</h2>
+      <ul>
+        <li>It scans your text for known foods and drinks.</li>
+        <li>It estimates nutritional patterns rather than pretending it knows exact quantities.</li>
+        <li>It changes its suggestions based on your selected goal and context filters.</li>
+        <li>It points you to trusted Australian resources when those are more useful than a guess wrapped in confidence.</li>
+      </ul>
+      <p class="small-note">This tool is intentionally rules-based. No black-box nutrition oracle. Just transparent logic with a decent bedside manner.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>Feed Me Properly is a work in progress.</p>
+    <p>It is for general nutrition guidance and practical next-step thinking, not diagnosis or personalised medical care.</p>
+  </footer>
+
+  <script>
+    const FOOD_RULES = [
+      { keywords: ["yoghurt", "yogurt", "greek yoghurt", "greek yogurt"], label: "Yoghurt", nutrients: ["protein", "calcium"], groups: ["dairy"] },
+      { keywords: ["milk", "latte", "cappuccino", "flat white"], label: "Milk or milk-based coffee", nutrients: ["calcium", "protein"], groups: ["dairy"] },
+      { keywords: ["cheese", "mozzarella", "tasty cheese", "parmesan", "feta"], label: "Cheese", nutrients: ["protein", "calcium", "satfat"] },
+      { keywords: ["egg", "eggs", "omelette"], label: "Eggs", nutrients: ["protein", "iron"], groups: ["protein"] },
+      { keywords: ["chicken", "tuna", "salmon", "beef", "lamb", "turkey", "fish", "pork", "bacon", "salami"], label: "Animal protein", nutrients: ["protein", "iron"], groups: ["protein"] },
+      { keywords: ["beans", "lentils", "chickpeas", "legumes", "tofu"], label: "Legumes or tofu", nutrients: ["protein", "fibre", "iron"], groups: ["protein", "plant"] },
+      { keywords: ["muesli", "oats", "porridge", "whole grain wrap", "wholegrain wrap", "brown rice", "basmati rice", "grain", "cereal", "wholemeal"], label: "Grains or cereal foods", nutrients: ["carbs", "fibre"], groups: ["grain"] },
+      { keywords: ["white bread", "white sourdough", "crackers", "pizza base"], label: "Refined grain foods", nutrients: ["carbs"], groups: ["grain-refined"] },
+      { keywords: ["spinach", "kale", "broccoli", "capsicum", "tomato", "cucumber", "carrot", "pumpkin", "salad", "vegetable", "veg", "mushroom", "mushrooms", "avocado"], label: "Vegetables", nutrients: ["fibre", "micronutrients"], groups: ["vegetables"] },
+      { keywords: ["orange", "juice", "berries", "blueberries", "apple", "peach", "grapes", "banana", "mango", "fruit"], label: "Fruit or fruit juice", nutrients: ["fibre", "vitamin-c", "carbs"], groups: ["fruit"] },
+      { keywords: ["nuts", "peanuts", "cashews", "almonds", "chia", "flaxseed", "pumpkin seed", "seeds"], label: "Nuts or seeds", nutrients: ["healthy-fat", "fibre", "protein"], groups: ["plant"] },
+      { keywords: ["chips", "churros", "muffin", "jelly snakes", "chocolate", "soft drink", "lollies", "crisps"], label: "Discretionary foods", nutrients: ["discretionary"] },
+      { keywords: ["coffee", "espresso", "instant coffee", "tea"], label: "Tea or coffee", nutrients: ["caffeine"] },
+      { keywords: ["orange juice", "citrus", "kiwi"], label: "Vitamin C source", nutrients: ["vitamin-c"] },
+      { keywords: ["water"], label: "Water", nutrients: ["hydration"] },
+      { keywords: ["iron tablet", "iron supplement"], label: "Iron supplement", nutrients: ["iron-supplement"] }
+    ];
+
+    const GOAL_CONFIG = {
+      general: {
+        title: "general balance",
+        priority: ["protein", "fibre", "vegetables", "fruit", "hydration"],
+        suggestions: [
+          "Aim for a more balanced spread across protein, vegetables or fruit, and grain foods rather than stacking the day heavily into one category.",
+          "If a meal is mostly beige and carbohydrate-heavy, add one protein source and one plant food to make it pull its weight."
+        ]
+      },
+      protein: {
+        title: "protein support",
+        priority: ["protein"],
+        suggestions: [
+          "Try to include a clear protein source at each main eating point, even if it is something low-effort like yoghurt, eggs, tuna, cheese, tofu, or beans.",
+          "Pair carbohydrate-heavy foods with protein so your energy does not sprint off and leave you stranded."
+        ]
+      },
+      iron: {
+        title: "iron support",
+        priority: ["iron", "vitamin-c"],
+        suggestions: [
+          "Iron-rich foods work better when paired with a vitamin C source such as orange, capsicum, berries, kiwi, or tomato.",
+          "Tea and coffee can get in the way of iron absorption around meals or supplements, so timing matters."
+        ]
+      },
+      fibre: {
+        title: "fibre support",
+        priority: ["fibre", "vegetables", "fruit", "grain"],
+        suggestions: [
+          "Try to spread fibre through the day with fruit, vegetables, legumes, oats, wholegrain wraps, or seeds rather than hoping one heroic meal will fix everything.",
+          "When increasing fibre, fluids matter too, otherwise your digestive system may respond with formal complaints."
+        ]
+      },
+      energy: {
+        title: "energy support",
+        priority: ["carbs", "protein"],
+        suggestions: [
+          "Meals and snacks that combine protein with carbohydrate tend to do a better job of keeping energy steadier.",
+          "If you are running on coffee and vibes, add something substantial like yoghurt and fruit, eggs on toast, a wrap, or nuts with fruit."
+        ]
+      },
+      "low-effort": {
+        title: "low-effort meals",
+        priority: ["protein", "carbs"],
+        suggestions: [
+          "Keep a small set of default low-effort options on hand, such as yoghurt and muesli, wraps with protein, microwave rice with beans, or toast plus eggs.",
+          "The goal is not culinary theatre. The goal is food that happens before you run out of steam."
+        ]
+      },
+      budget: {
+        title: "budget-friendly food ideas",
+        priority: ["protein", "fibre", "carbs"],
+        suggestions: [
+          "Budget-friendly nutrition usually leans on oats, eggs, tinned fish, beans, lentils, frozen vegetables, yoghurt, and fruit that is in season or discounted.",
+          "Stretch pricier protein by pairing it with grains or legumes rather than expecting one expensive ingredient to carry the whole meal."
+        ]
+      }
+    };
+
+    const RESOURCE_LINKS = {
+      general: [
+        { text: "Eat for Health: Australian Dietary Guidelines", url: "https://www.eatforhealth.gov.au/guidelines/guidelines" },
+        { text: "Healthdirect: balanced diet explained", url: "https://www.healthdirect.gov.au/balanced-diet" }
+      ],
+      protein: [
+        { text: "Eat for Health: the five food groups", url: "https://www.eatforhealth.gov.au/food-essentials/five-food-groups" },
+        { text: "Healthdirect: balanced diet explained", url: "https://www.healthdirect.gov.au/balanced-diet" }
+      ],
+      iron: [
+        { text: "Healthdirect: iron deficiency explained", url: "https://www.healthdirect.gov.au/iron-deficiency" },
+        { text: "Eat for Health: Australian Dietary Guidelines", url: "https://www.eatforhealth.gov.au/guidelines/guidelines" }
+      ],
+      fibre: [
+        { text: "Nutrition Australia: Australian Dietary Guidelines standard serves", url: "https://nutritionaustralia.org/resources/adgs-standard-serves/" },
+        { text: "Eat for Health: meal planning tips", url: "https://www.eatforhealth.gov.au/eating-well/tips-eating-well/meal-planning" }
+      ],
+      energy: [
+        { text: "Eat for Health: calculators and food guidance", url: "https://www.eatforhealth.gov.au/" },
+        { text: "Healthdirect: balanced diet explained", url: "https://www.healthdirect.gov.au/balanced-diet" }
+      ],
+      "low-effort": [
+        { text: "Eat for Health: meal planning tips", url: "https://www.eatforhealth.gov.au/eating-well/tips-eating-well/meal-planning" },
+        { text: "Dietitians Australia", url: "https://dietitiansaustralia.org.au/" }
+      ],
+      budget: [
+        { text: "Nutrition Australia", url: "https://nutritionaustralia.org/" },
+        { text: "Eat for Health: meal planning tips", url: "https://www.eatforhealth.gov.au/eating-well/tips-eating-well/meal-planning" }
+      ]
+    };
+
+    const form = document.getElementById("nutrition-form");
+    const resultsSection = document.getElementById("results");
+    const mealInput = document.getElementById("meal-input");
+    const goalSelect = document.getElementById("goal-select");
+    const statusMessage = document.getElementById("status-message");
+    const strengthsList = document.getElementById("strengths-list");
+    const gapsList = document.getElementById("gaps-list");
+    const confidenceText = document.getElementById("confidence-text");
+    const recognizedFoods = document.getElementById("recognized-foods");
+    const suggestionsList = document.getElementById("suggestions-list");
+    const resourcesList = document.getElementById("resources-list");
+    const disclaimerText = document.getElementById("disclaimer-text");
+    const resultsHeading = document.getElementById("results-heading");
+    const saveEntryButton = document.getElementById("save-entry");
+    const loadEntryButton = document.getElementById("load-entry");
+    const sampleEntryButton = document.getElementById("sample-entry");
+    const exportResultsButton = document.getElementById("export-results");
+
+    function getSelectedContexts() {
+      return Array.from(document.querySelectorAll('input[name="context"]:checked')).map(input => input.value);
+    }
+
+    function tokenizeInput(text) {
+      return text.toLowerCase();
+    }
+
+    function detectFoods(text) {
+      const found = [];
+      for (const rule of FOOD_RULES) {
+        const matchedKeywords = rule.keywords.filter(keyword => text.includes(keyword));
+        if (matchedKeywords.length > 0) {
+          found.push({ ...rule, matchedKeywords });
+        }
+      }
+      return found;
+    }
+
+    function countNutrients(foundFoods) {
+      const totals = {
+        protein: 0,
+        fibre: 0,
+        calcium: 0,
+        iron: 0,
+        carbs: 0,
+        "vitamin-c": 0,
+        hydration: 0,
+        discretionary: 0,
+        caffeine: 0,
+        satfat: 0
+      };
+
+      const groups = {
+        vegetables: 0,
+        fruit: 0,
+        grain: 0,
+        "grain-refined": 0,
+        dairy: 0,
+        protein: 0,
+        plant: 0
+      };
+
+      foundFoods.forEach(item => {
+        item.nutrients.forEach(nutrient => {
+          if (totals[nutrient] !== undefined) {
+            totals[nutrient] += 1;
+          }
+        });
+        (item.groups || []).forEach(group => {
+          if (groups[group] !== undefined) {
+            groups[group] += 1;
+          }
+        });
+      });
+
+      return { totals, groups };
+    }
+
+    function getConfidenceText(foundFoods, originalText) {
+      const wordCount = originalText.trim().split(/\s+/).filter(Boolean).length;
+      const matchCount = foundFoods.length;
+
+      if (matchCount >= 6) {
+        return "Confidence is fairly solid for a rough guide. You gave enough detail for the tool to recognise several foods and build a decent pattern read.";
+      }
+      if (matchCount >= 3) {
+        return "Confidence is moderate. The tool recognised some useful foods, but a few details are probably missing, so the advice stays broad rather than pretending to know your kitchen better than you do.";
+      }
+      if (wordCount > 0) {
+        return "Confidence is limited. The tool could only recognise a small number of foods, so treat this as a starting point rather than gospel.";
+      }
+      return "Confidence is too low to analyse because the entry was empty.";
+    }
+
+    function pushUnique(list, text) {
+      if (!list.includes(text)) {
+        list.push(text);
+      }
+    }
+
+    function buildAnalysis(foundFoods, goal, contexts, originalText) {
+      const { totals, groups } = countNutrients(foundFoods);
+      const strengths = [];
+      const gaps = [];
+      const suggestions = [];
+      const recognized = foundFoods.map(item => `${item.label}: matched ${item.matchedKeywords.join(", ")}`);
+      const goalConfig = GOAL_CONFIG[goal];
+
+      if (groups.protein > 0 || totals.protein >= 2) {
+        pushUnique(strengths, "There is at least some clear protein in the mix, which gives this entry more staying power than pure carbohydrate drift.");
+      } else {
+        pushUnique(gaps, "A clear protein source is not obvious. That can make meals or snacks less filling and less helpful for steady energy.");
+      }
+
+      if (groups.vegetables > 0) {
+        pushUnique(strengths, "There is at least one vegetable signal here, which usually helps with fibre and overall nutrient coverage.");
+      } else {
+        pushUnique(gaps, "Vegetables are not obvious in this entry. The day may be lighter on fibre and micronutrients than ideal.");
+      }
+
+      if (groups.fruit > 0) {
+        pushUnique(strengths, "Fruit shows up here, which can help with fibre, vitamin C, or an easier snack option depending on the food.");
+      }
+
+      if (groups.grain > 0) {
+        pushUnique(strengths, "There is a wholegrain or cereal-style food in the mix, which may help with energy and fibre depending on quantity.");
+      }
+
+      if (groups["grain-refined"] > 0 && groups.grain === 0) {
+        pushUnique(gaps, "The grain foods look mostly refined rather than wholegrain, so fibre may be lower than it could be.");
+      }
+
+      if (totals.calcium >= 2) {
+        pushUnique(strengths, "There are likely calcium sources here, especially from dairy-style foods.");
+      }
+
+      if (totals.iron >= 1) {
+        pushUnique(strengths, "There is at least one likely iron-containing food in the entry.");
+      }
+
+      if (totals.discretionary >= 2) {
+        pushUnique(gaps, "A decent chunk of this entry comes from discretionary foods. That is not a moral failing, but it can crowd out food that does more actual nutritional work.");
+      }
+
+      if (totals.caffeine >= 1 && goal === "iron" && !originalText.includes("hours") && !originalText.includes("later")) {
+        pushUnique(gaps, "Tea or coffee appears in the entry. Around iron-rich meals or supplements, timing may matter.");
+      }
+
+      if (totals.hydration === 0 && !originalText.includes("juice")) {
+        pushUnique(gaps, "Hydration is not obvious in the entry. That does not mean you had none, just that it is not accounted for here.");
+      }
+
+      if (goal === "protein") {
+        if (totals.protein < 2) {
+          pushUnique(gaps, "For a protein-focused goal, the entry looks lighter than ideal on reliable protein anchors.");
+        }
+      }
+
+      if (goal === "iron") {
+        if (totals.iron < 1) {
+          pushUnique(gaps, "For an iron-focused goal, there is no strong iron source standing out in the entry.");
+        }
+        if (totals.iron >= 1 && totals["vitamin-c"] >= 1) {
+          pushUnique(strengths, "There is some sign of iron plus vitamin C together, which is a useful pairing.");
+        } else if (totals.iron >= 1) {
+          pushUnique(gaps, "There may be iron present, but a paired vitamin C source is not especially clear.");
+        }
+      }
+
+      if (goal === "fibre") {
+        if (totals.fibre < 2) {
+          pushUnique(gaps, "For a fibre-focused goal, this entry probably needs more fruit, vegetables, legumes, wholegrains, or seeds.");
+        } else {
+          pushUnique(strengths, "There are at least a few fibre signals here, which is useful for a fibre-focused day.");
+        }
+      }
+
+      if (goal === "energy") {
+        if (totals.protein < 1 || totals.carbs < 1) {
+          pushUnique(gaps, "For steadier energy, this entry may need a better pairing of carbohydrate plus protein.");
+        } else {
+          pushUnique(strengths, "There is some sign of carbohydrate plus protein together, which tends to work better for steadier energy than caffeine doing all the heavy lifting.");
+        }
+      }
+
+      if (goal === "low-effort") {
+        pushUnique(suggestions, "Build a short emergency roster of low-effort defaults you can repeat without thinking too hard.");
+      }
+
+      if (goal === "budget") {
+        pushUnique(suggestions, "Use cheap base foods such as oats, rice, eggs, beans, lentils, frozen vegetables, and yoghurt as your regular workhorses.");
+      }
+
+      goalConfig.suggestions.forEach(item => pushUnique(suggestions, item));
+
+      if (groups.protein === 0) {
+        pushUnique(suggestions, "Add a protein source such as eggs, yoghurt, tuna, chicken, tofu, beans, cheese, or nuts depending on what you tolerate and what is easiest.");
+      }
+
+      if (groups.vegetables === 0 && groups.fruit === 0) {
+        pushUnique(suggestions, "Add one plant food somewhere easy, such as fruit with yoghurt, tomato in a wrap, frozen vegetables with rice, or salad tucked into whatever else is happening.");
+      }
+
+      if (groups.vegetables === 0 && groups.fruit > 0) {
+        pushUnique(suggestions, "Fruit is doing some work here, but vegetables still look light. An easy add-on could be tomato, spinach, frozen veg, or soup.");
+      }
+
+      if (totals.caffeine >= 1 && totals.protein === 0) {
+        pushUnique(suggestions, "If coffee is part of the entry, make sure it is not auditioning as a meal replacement. Pair it with actual food.");
+      }
+
+      if (contexts.includes("vegetarian")) {
+        pushUnique(suggestions, "Vegetarian-friendly protein and iron options include eggs, tofu, tempeh, beans, lentils, yoghurt, cheese, nuts, seeds, and iron-fortified cereals.");
+      }
+
+      if (contexts.includes("busy")) {
+        pushUnique(suggestions, "Busy-mode options can be brutally simple: yoghurt and muesli, microwave rice plus beans, soup and toast, eggs on toast, or a wrap with tuna or cheese.");
+      }
+
+      if (contexts.includes("low-appetite")) {
+        pushUnique(suggestions, "When appetite is patchy, smaller food hits with protein can work better than waiting for a perfect meal to happen.");
+      }
+
+      if (contexts.includes("sensory")) {
+        pushUnique(suggestions, "If sensory tolerance is part of the equation, keep the advice flexible and build from foods you already reliably tolerate rather than forcing texture heroics.");
+      }
+
+      let disclaimer = "This tool gives general nutrition guidance only. It does not estimate exact nutrients, diagnose anything, or replace advice from a dietitian, GP, or other qualified clinician.";
+
+      if (contexts.includes("medical") || /pain|dizzy|nausea|faint|pregnan|diabet|kidney|allerg|eating disorder|supplement|deficien|medication/i.test(originalText)) {
+        disclaimer = "Some of what you entered may overlap with medical, medication, or condition-specific advice. Use this result as general guidance only and check with a GP, accredited practising dietitian, or other qualified clinician for anything personalised or high-stakes.";
+        pushUnique(gaps, "This entry may overlap with health or medication issues that a rules-based tool cannot safely personalise.");
+      }
+
+      if (strengths.length === 0) {
+        strengths.push("Not enough strong positives stood out from the recognised foods to say much with confidence yet.");
+      }
+
+      if (gaps.length === 0) {
+        gaps.push("No major red flags stood out from the rules used here, though that is not the same as a complete assessment.");
+      }
+
+      return {
+        strengths,
+        gaps,
+        suggestions,
+        recognized,
+        disclaimer,
+        confidence: getConfidenceText(foundFoods, originalText)
+      };
+    }
+
+    function renderList(element, items, allowLinks = false) {
+      element.innerHTML = "";
+      items.forEach(item => {
+        const li = document.createElement("li");
+        if (allowLinks && item.url) {
+          const link = document.createElement("a");
+          link.href = item.url;
+          link.textContent = item.text;
+          li.appendChild(link);
+        } else {
+          li.textContent = item;
+        }
+        element.appendChild(li);
+      });
+    }
+
+    function analyseEntry(event) {
+      event.preventDefault();
+      const originalText = mealInput.value.trim();
+      const goal = goalSelect.value;
+      const contexts = getSelectedContexts();
+
+      if (!originalText) {
+        statusMessage.textContent = "Add some food information first, then run the guide again.";
+        resultsSection.hidden = false;
+        resultsHeading.focus();
+        renderList(strengthsList, ["Nothing to analyse yet."]);
+        renderList(gapsList, ["The food entry was empty."]);
+        renderList(recognizedFoods, []);
+        renderList(suggestionsList, ["Enter at least one meal, snack, or food idea."]);
+        renderList(resourcesList, RESOURCE_LINKS.general, true);
+        confidenceText.textContent = "Confidence is too low to analyse because no entry was provided.";
+        disclaimerText.textContent = "This tool only works when there is actual food information to analyse.";
+        return;
+      }
+
+      const normalised = tokenizeInput(originalText);
+      const foundFoods = detectFoods(normalised);
+      const analysis = buildAnalysis(foundFoods, goal, contexts, normalised);
+      const resourceItems = RESOURCE_LINKS[goal] || RESOURCE_LINKS.general;
+
+      renderList(strengthsList, analysis.strengths);
+      renderList(gapsList, analysis.gaps);
+      renderList(recognizedFoods, analysis.recognized.length ? analysis.recognized : ["No specific foods were recognised from the current rule set."]);
+      renderList(suggestionsList, analysis.suggestions);
+      renderList(resourcesList, resourceItems, true);
+      confidenceText.textContent = analysis.confidence;
+      disclaimerText.textContent = analysis.disclaimer;
+
+      const recognisedCount = analysis.recognized.length;
+      statusMessage.textContent = `Analysis ready. Goal: ${GOAL_CONFIG[goal].title}. Recognised ${recognisedCount} food pattern${recognisedCount === 1 ? "" : "s"}.`;
+
+      resultsSection.hidden = false;
+      resultsHeading.focus();
+    }
+
+    function saveEntry() {
+      const payload = {
+        mealText: mealInput.value,
+        goal: goalSelect.value,
+        contexts: getSelectedContexts()
+      };
+      localStorage.setItem("feedMeProperlyEntry", JSON.stringify(payload));
+      statusMessage.textContent = "Entry saved on this device.";
+      resultsSection.hidden = false;
+      resultsHeading.focus();
+    }
+
+    function loadEntry() {
+      const raw = localStorage.getItem("feedMeProperlyEntry");
+      if (!raw) {
+        statusMessage.textContent = "No saved entry was found on this device yet.";
+        resultsSection.hidden = false;
+        resultsHeading.focus();
+        return;
+      }
+
+      const payload = JSON.parse(raw);
+      mealInput.value = payload.mealText || "";
+      goalSelect.value = payload.goal || "general";
+      document.querySelectorAll('input[name="context"]').forEach(input => {
+        input.checked = Array.isArray(payload.contexts) ? payload.contexts.includes(input.value) : false;
+      });
+      statusMessage.textContent = "Saved entry loaded. Run the analysis when you are ready.";
+      resultsSection.hidden = false;
+      resultsHeading.focus();
+    }
+
+    function insertSample() {
+      mealInput.value = "Breakfast was muesli with Greek yoghurt and blueberries. Later I had a latte. Lunch was a wholegrain wrap with chicken, tomato, capsicum, spinach, avocado, and cheese. In the afternoon I had a peach and a small handful of cashews.";
+      goalSelect.value = "general";
+      document.querySelectorAll('input[name="context"]').forEach(input => {
+        input.checked = false;
+      });
+      mealInput.focus();
+    }
+
+    function exportResults() {
+      if (resultsSection.hidden) {
+        statusMessage.textContent = "Run an analysis before exporting results.";
+        resultsSection.hidden = false;
+        resultsHeading.focus();
+        return;
+      }
+
+      const blocks = [
+        "Feed Me Properly export",
+        "",
+        `Meal entry: ${mealInput.value.trim()}`,
+        `Goal: ${GOAL_CONFIG[goalSelect.value].title}`,
+        `Contexts: ${getSelectedContexts().join(", ") || "None selected"}`,
+        "",
+        "Likely strengths:",
+        ...Array.from(strengthsList.querySelectorAll("li")).map(li => `- ${li.textContent}`),
+        "",
+        "Likely gaps or watch-outs:",
+        ...Array.from(gapsList.querySelectorAll("li")).map(li => `- ${li.textContent}`),
+        "",
+        "Confidence:",
+        confidenceText.textContent,
+        "",
+        "Practical next steps:",
+        ...Array.from(suggestionsList.querySelectorAll("li")).map(li => `- ${li.textContent}`),
+        "",
+        "Australian resources:",
+        ...Array.from(resourcesList.querySelectorAll("a")).map(link => `- ${link.textContent}: ${link.href}`),
+        "",
+        "Important note:",
+        disclaimerText.textContent
+      ].join("\n");
+
+      const blob = new Blob([blocks], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "feed-me-properly-results.txt";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    form.addEventListener("submit", analyseEntry);
+    form.addEventListener("reset", () => {
+      window.setTimeout(() => {
+        resultsSection.hidden = true;
+        statusMessage.textContent = "";
+      }, 0);
+    });
+    saveEntryButton.addEventListener("click", saveEntry);
+    loadEntryButton.addEventListener("click", loadEntry);
+    sampleEntryButton.addEventListener("click", insertSample);
+    exportResultsButton.addEventListener("click", exportResults);
+  </script>
+</body>
+</html>
