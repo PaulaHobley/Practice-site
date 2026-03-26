@@ -4,43 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Experimental Web Playground</title>
+
   <style>
     :root {
-      --bg: #faf9fc;
-      --surface: #f1edf6;
-      --text: #1f1b24;
-      --heading: #2c2140;
-      --accent: #5f3fa0;
-      --accent-hover: #4b2f83;
-      --border-subtle: #c9bed8;
-      --border-strong: #7a6896;
-      --focus: #4b2f83;
-      --max-width: 65ch;
-      --space-1: 0.5rem;
-      --space-2: 1rem;
-      --space-3: 1.5rem;
-      --space-4: 2rem;
-      --space-5: 3rem;
-      --radius: 0.5rem;
-      --line-height: 1.6;
-      --font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --bg: #f7f4fb;
+      --surface: #eee7f7;
+      --text: #241d2e;
+      --heading: #2f1f52;
+      --accent: #6b46c1;
+      --accent-hover: #55379b;
+      --border-subtle: #b9aad6;
+      --focus: #55379b;
     }
 
-      * {
+    * {
       box-sizing: border-box;
-    }
-
-    html {
-      font-size: 100%;
-      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      font-family: var(--font-stack);
-      line-height: var(--line-height);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
+      line-height: 1.65;
     }
 
     a {
@@ -50,47 +36,47 @@
     }
 
     a:hover,
-    a:focus-visible {
+    a:focus {
       color: var(--accent-hover);
     }
 
-    a:focus-visible,
-    button:focus-visible {
+    a:focus-visible {
       outline: 3px solid var(--focus);
-      outline-offset: 2px;
+      outline-offset: 3px;
     }
 
     .skip-link {
       position: absolute;
-      left: 0;
-      top: 0;
-      transform: translateY(-140%);
-      background: var(--heading);
-      color: var(--bg);
+      left: -9999px;
+      background: #ffffff;
+      color: var(--heading);
       padding: 0.75rem 1rem;
-      z-index: 1000;
+      z-index: 100;
     }
 
     .skip-link:focus {
-      transform: translateY(0);
+      left: 1rem;
+      top: 1rem;
+      border: 2px solid var(--focus);
+      border-radius: 0.5rem;
     }
 
-    .site-header,
-    .site-main,
-    .site-footer {
-      width: min(100% - 2rem, 72rem);
+    .site-wrap {
+      max-width: 82rem;
       margin: 0 auto;
+      padding: 1.5rem;
     }
 
     .site-header {
-      padding: var(--space-3) 0 var(--space-2);
+      padding-bottom: 1.5rem;
       border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 2.5rem;
     }
 
     .site-title {
-      margin: 0 0 var(--space-2);
-      font-size: clamp(1.75rem, 4vw, 2.4rem);
-      line-height: 1.2;
+      margin: 0 0 1rem 0;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
       color: var(--heading);
     }
 
@@ -100,188 +86,153 @@
     }
 
     .site-title a:hover,
-    .site-title a:focus-visible {
+    .site-title a:focus {
       text-decoration: underline;
-      text-decoration-thickness: 0.08em;
-      text-underline-offset: 0.15em;
     }
 
     .site-nav ul {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem 1rem;
+      gap: 1rem;
       margin: 0;
       padding: 0;
     }
 
     .site-nav a {
-      display: inline-block;
-      padding: 0.35rem 0.15rem;
-      text-decoration-thickness: 0.08em;
-      text-underline-offset: 0.18em;
+      font-weight: 600;
     }
 
     .site-nav a[aria-current="page"] {
-      font-weight: 700;
-      text-decoration-thickness: 0.12em;
+      color: var(--heading);
+      text-decoration-thickness: 0.15em;
     }
 
-    .site-main {
-      padding: var(--space-5) 0;
-    }
-
-    .intro,
-    .content-section {
-      max-width: var(--max-width);
+    main {
+      max-width: 68ch;
     }
 
     .intro {
-      margin-bottom: var(--space-5);
+      margin-bottom: 2.5rem;
     }
 
     .intro h1 {
-      margin: 0 0 var(--space-2);
-      font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1.15;
+      margin: 0 0 1rem 0;
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      line-height: 1.05;
       color: var(--heading);
     }
 
-    .intro p {
-      margin: 0;
-      font-size: 1.1rem;
-    }
-
-    .content-section {
-      margin-bottom: var(--space-5);
-      padding: var(--space-3);
+    .panel {
       background: var(--surface);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
-    .content-section h2 {
+    .panel h2 {
       margin-top: 0;
-      margin-bottom: var(--space-2);
-      font-size: clamp(1.35rem, 3vw, 1.8rem);
-      line-height: 1.2;
       color: var(--heading);
     }
 
-    p,
-    ul {
-      margin-top: 0;
-      margin-bottom: var(--space-2);
-    }
-
-    ul {
-      padding-left: 1.25rem;
-    }
-
-    li + li {
-      margin-top: 0.5rem;
-    }
-
-    .site-footer {
-      padding: var(--space-3) 0 var(--space-5);
-      border-top: 1px solid var(--border-subtle);
-      max-width: var(--max-width);
-    }
-
-    .site-footer p {
-      margin: 0;
-    }
-
-    @media (max-width: 40rem) {
-      .site-header,
-      .site-main,
-      .site-footer {
-        width: min(100% - 1.5rem, 72rem);
-      }
-
-      .content-section {
-        padding: var(--space-2);
-      }
+    footer {
+      max-width: 68ch;
+      padding-top: 2rem;
+      font-size: 0.95rem;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
+      * {
+        animation: none !important;
         transition: none !important;
       }
     }
   </style>
 </head>
+
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="site-wrap">
 
   <header class="site-header">
-    <p class="site-title"><a href="/">Experimental Web Playground</a></p>
-<nav class="site-nav" aria-label="Primary">
-  <ul>
-    <li><a href="index.html" aria-current="page">Home</a></li>
-    <li><a href="experiments.html">Experiments</a></li>
-    <li><a href="tools.html">Tools</a></li>
-    <li><a href="recipes.html">Recipes</a></li>
-    <li><a href="blog.html">Blog</a></li>
-  </ul>
-</nav></header>
+    <p class="site-title">
+      <a href="index.html">Experimental Web Playground</a>
+    </p>
 
-  <main id="main-content" class="site-main">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="experiments.html">Experiments</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="recipes.html">Recipes</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
     <section class="intro">
       <h1>Welcome to my experimental web playground</h1>
-      <p>This site exists because I wanted somewhere to build things properly, break them safely, and figure out what actually works without someone else&rsquo;s template getting in the way. It&rsquo;s part learning exercise, part testing ground, and part &ldquo;what happens if I just build the thing myself and see how it behaves.&rdquo;</p>
+      <p>
+        This site exists because I wanted somewhere to build things properly,
+        break them safely, and figure out what actually works without someone
+        else’s template getting in the way.
+      </p>
     </section>
 
-    <section class="content-section">
+    <section class="panel">
       <h2>Why this site exists</h2>
-      <p>I&rsquo;m learning to code in a way that makes sense to me, which means understanding how things work under the hood, building layouts that don&rsquo;t fall apart the moment you zoom, making sure interaction still works when you&rsquo;re not relying on a mouse, and avoiding unnecessary complexity just because it looks impressive. This site is where I put that into practice.</p>
+      <p>
+        I’m learning to code in a way that makes sense to me, which means
+        understanding how things work under the hood and making sure everything
+        works without relying on visual assumptions.
+      </p>
     </section>
 
-    <section class="content-section">
-      <h2>What you&rsquo;ll find here</h2>
-      <p>At the moment, it&rsquo;s a mix of experiments and ideas that may or may not behave themselves.</p>
+    <section class="panel">
+      <h2>What you’ll find here</h2>
       <ul>
         <li>Small web tools and utilities</li>
         <li>Layout and styling experiments</li>
-        <li>Accessibility-focused testing</li>
-        <li>Random projects that seemed like a good idea at the time</li>
+        <li>Accessibility testing</li>
       </ul>
-      <p>Some things will be polished. Some things will be held together with metaphorical duct tape. That&rsquo;s the point.</p>
     </section>
 
-    <section class="content-section">
-      <h2>How I&rsquo;m approaching this</h2>
-      <p>I&rsquo;m not trying to build the fanciest site on the internet. I&rsquo;m trying to build one that works reliably, behaves properly at different zoom levels, doesn&rsquo;t rely on visual assumptions, uses native HTML where it makes sense, and only adds complexity when it actually solves a problem.</p>
-      <p>If something feels over-engineered, it probably is.</p>
+    <section class="panel">
+      <h2>How I’m approaching this</h2>
+      <p>
+        I’m focusing on reliability, accessibility, and simplicity rather than
+        complexity for the sake of it.
+      </p>
     </section>
 
-    <section class="content-section">
+    <section class="panel">
       <h2>Accessibility note</h2>
-      <p>Accessibility isn&rsquo;t an afterthought here. It&rsquo;s part of the foundation.</p>
-      <p>That means proper structure, predictable navigation, usable interaction patterns, and making sure things still make sense when you&rsquo;re not relying on visuals. No gimmicks. No pretending a plugin fixed everything.</p>
+      <p>
+        Accessibility is built in from the start, not added later.
+      </p>
     </section>
 
-    <section class="content-section">
+    <section class="panel">
       <h2>Ongoing work</h2>
-      <p>This site will evolve as I learn more.</p>
-      <p>Things will change, improve, and occasionally break before they get better. If something doesn&rsquo;t work yet, it&rsquo;s probably on the list.</p>
+      <p>
+        This site will evolve over time as I continue learning and experimenting.
+      </p>
     </section>
 
-    <section class="content-section">
-      <h2>Closing</h2>
-      <p>If you&rsquo;re here, you&rsquo;re either curious, lost, or I sent you the link.</p>
-      <p>Either way, welcome.</p>
-    </section>
   </main>
 
-  <footer class="site-footer">
-    <p>This is a work in progress, which is a polite way of saying I&rsquo;m building as I go.</p>
+  <footer>
+    <p>
+      Built as a practice space for accessible, standards-based web development.
+    </p>
   </footer>
+
+</div>
+
 </body>
 </html>
