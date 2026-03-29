@@ -545,33 +545,41 @@
     }
 
     .dog-figure[data-level="dry"] {
-      transform: translateY(-0.1rem);
+      transform: translateY(-0.16rem) translateX(-0.04rem);
     }
 
     .dog-figure[data-level="dry"] .dog-head {
-      animation: head-tilt-dry 3.4s ease-in-out infinite;
+      animation: head-tilt-dry 4.2s ease-in-out infinite;
     }
 
     .dog-figure[data-level="dry"] .dog-tail {
-      animation: tail-flick-dry 4.4s ease-in-out infinite;
+      animation: tail-flick-dry 5.8s ease-in-out infinite;
     }
 
     .dog-figure[data-level="dry"] .dog-eye {
-      animation: blink-dry 6s ease-in-out infinite;
+      animation: blink-dry 7.4s ease-in-out infinite;
+    }
+
+    .dog-figure[data-level="dry"] .dog-ear--left {
+      transform: rotate(20deg);
+    }
+
+    .dog-figure[data-level="dry"] .dog-ear--right {
+      transform: rotate(-14deg);
     }
 
     .dog-figure[data-level="dry"] .dog-brow--left {
-      transform: rotate(-28deg) translateY(-0.08rem);
+      transform: rotate(-38deg) translateY(-0.14rem) translateX(-0.04rem);
     }
 
     .dog-figure[data-level="dry"] .dog-brow--right {
-      transform: rotate(10deg);
+      transform: rotate(6deg) translateY(0.02rem);
     }
 
     .dog-figure[data-level="dry"] .dog-mouth {
-      width: 0.84rem;
-      height: 0.22rem;
-      border-bottom-width: 0.15rem;
+      width: 0.76rem;
+      height: 0.16rem;
+      border-bottom-width: 0.14rem;
     }
 
     .dog-figure[data-level="full"] {
@@ -616,39 +624,39 @@
     }
 
     .dog-figure[data-level="bites"] {
-      animation: body-brace-bites 0.52s ease-in-out infinite;
-      transform: translateY(-0.12rem) translateX(0.18rem) scale(1.04);
+      animation: body-brace-bites 0.42s ease-in-out infinite;
+      transform: translateY(-0.16rem) translateX(0.28rem) scale(1.06);
     }
 
     .dog-figure[data-level="bites"] .dog-head {
-      animation: head-lunge-bites 0.48s ease-in-out infinite;
-      transform: rotate(-9deg) translateX(0.9rem) translateY(-0.1rem);
+      animation: head-lunge-bites 0.34s ease-in-out infinite;
+      transform: rotate(-12deg) translateX(1.1rem) translateY(-0.14rem);
     }
 
     .dog-figure[data-level="bites"] .dog-tail {
-      animation: tail-twitch-bites 0.18s linear infinite;
-      width: 1.2rem;
+      animation: tail-twitch-bites 0.12s linear infinite;
+      width: 0.9rem;
     }
 
     .dog-figure[data-level="bites"] .dog-ear--left {
-      transform: rotate(38deg);
+      transform: rotate(48deg);
     }
 
     .dog-figure[data-level="bites"] .dog-ear--right {
-      transform: rotate(-38deg);
+      transform: rotate(-48deg);
     }
 
     .dog-figure[data-level="bites"] .dog-brow--left {
-      transform: rotate(-40deg) translateY(-0.06rem);
+      transform: rotate(-48deg) translateY(-0.08rem);
     }
 
     .dog-figure[data-level="bites"] .dog-brow--right {
-      transform: rotate(40deg) translateY(-0.06rem);
+      transform: rotate(48deg) translateY(-0.08rem);
     }
 
     .dog-figure[data-level="bites"] .dog-mouth {
-      width: 1.32rem;
-      height: 0.88rem;
+      width: 1.44rem;
+      height: 1rem;
       border: 0.18rem solid var(--heading);
       border-top: 0;
       border-radius: 0 0 1rem 1rem;
@@ -677,9 +685,10 @@
     }
 
     @keyframes tail-flick-dry {
-      0%, 85%, 100% { transform: rotate(8deg); }
-      90% { transform: rotate(-3deg); }
-      95% { transform: rotate(12deg); }
+      0%, 88%, 100% { transform: rotate(6deg); }
+      91% { transform: rotate(-1deg); }
+      94% { transform: rotate(9deg); }
+      97% { transform: rotate(4deg); }
     }
 
     @keyframes tail-wag-full {
@@ -688,24 +697,25 @@
     }
 
     @keyframes tail-twitch-bites {
-      0%, 100% { transform: rotate(14deg); }
-      25% { transform: rotate(-10deg); }
-      50% { transform: rotate(18deg); }
-      75% { transform: rotate(-6deg); }
+      0%, 100% { transform: rotate(18deg); }
+      20% { transform: rotate(-16deg); }
+      45% { transform: rotate(22deg); }
+      70% { transform: rotate(-12deg); }
     }
 
     @keyframes blink-dry {
-      0%, 46%, 52%, 100% {
+      0%, 35%, 39%, 72%, 76%, 100% {
         transform: scaleY(1);
       }
-      48%, 50% {
-        transform: scaleY(0.12);
+      37%, 74% {
+        transform: scaleY(0.08);
       }
     }
 
     @keyframes head-tilt-dry {
-      0%, 100% { transform: rotate(-6deg) translateY(0); }
-      50% { transform: rotate(4deg) translateY(-0.1rem); }
+      0%, 18%, 100% { transform: rotate(-9deg) translateY(0) translateX(-0.02rem); }
+      55% { transform: rotate(5deg) translateY(-0.06rem) translateX(0.02rem); }
+      78% { transform: rotate(2deg) translateY(-0.02rem); }
     }
 
     @keyframes head-tilt-full {
@@ -714,8 +724,8 @@
     }
 
     @keyframes head-lunge-bites {
-      0%, 100% { transform: rotate(-9deg) translateX(0.9rem) translateY(-0.1rem); }
-      50% { transform: rotate(-14deg) translateX(1.28rem) translateY(-0.2rem); }
+      0%, 100% { transform: rotate(-12deg) translateX(1.1rem) translateY(-0.14rem); }
+      50% { transform: rotate(-18deg) translateX(1.65rem) translateY(-0.28rem); }
     }
 
     @keyframes body-bob-full {
@@ -724,8 +734,8 @@
     }
 
     @keyframes body-brace-bites {
-      0%, 100% { transform: translateY(-0.12rem) translateX(0.18rem) scale(1.04); }
-      50% { transform: translateY(-0.04rem) translateX(0.28rem) scale(1.06); }
+      0%, 100% { transform: translateY(-0.16rem) translateX(0.28rem) scale(1.06); }
+      50% { transform: translateY(-0.02rem) translateX(0.4rem) scale(1.08); }
     }
 
     @keyframes ear-flick-full-left {
@@ -1175,8 +1185,8 @@
     const dogReactions = {
       dry: {
         label: 'Dry sarcasm dog',
-        animatedAnnouncement: 'Animated dog shown. Dry sarcasm dog gives a long side-eye, a measured head tilt, a blink, and only the faintest tail flick.',
-        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Dry sarcasm dog gives a long side-eye with a measured head tilt.'
+        animatedAnnouncement: 'Animated dog shown. Dry sarcasm dog delivers a longer side-eye, a slower head tilt, a deliberate blink, and only the tiniest tail flick.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Dry sarcasm dog delivers a longer side-eye with a slower, more dismissive head tilt.'
       },
       full: {
         label: 'Full snark dog',
@@ -1185,8 +1195,8 @@
       },
       bites: {
         label: 'The dog bites dog',
-        animatedAnnouncement: 'Animated dog shown. The dog bites reaction braces hard, lunges forward, pins the ears back, snaps the tail, and shows visible teeth.',
-        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. The dog bites reaction braces hard forward with pinned ears and visible teeth.'
+        animatedAnnouncement: 'Animated dog shown. The dog bites reaction braces hard, throws the head sharply forward, pins the ears back, snaps the tail tight, and bares more visible teeth.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. The dog bites reaction holds a hard forward brace with pinned ears and more visible teeth.'
       }
     };
 
