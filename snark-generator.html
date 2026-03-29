@@ -412,7 +412,7 @@
       background: var(--heading);
       border-radius: 999px;
       transform-origin: left center;
-      animation: tail-wag-slow 1.8s ease-in-out infinite;
+      animation: tail-flick-dry 4.4s ease-in-out infinite;
     }
 
     .dog-head {
@@ -425,7 +425,7 @@
       border: 0.18rem solid var(--heading);
       border-radius: 48% 48% 42% 42%;
       transform-origin: 72% 80%;
-      animation: head-tilt-dry 2.8s ease-in-out infinite;
+      animation: head-tilt-dry 3.4s ease-in-out infinite;
     }
 
     .dog-ear {
@@ -456,6 +456,7 @@
       height: 0.42rem;
       background: var(--heading);
       border-radius: 50%;
+      transform-origin: center;
     }
 
     .dog-eye--left { left: 0.95rem; }
@@ -543,98 +544,111 @@
       font-weight: 700;
     }
 
-    .dog-figure[data-level="dry"] .dog-brow--left {
-      transform: rotate(-18deg);
-    }
-
-    .dog-figure[data-level="dry"] .dog-brow--right {
-      transform: rotate(8deg);
-    }
-
-    .dog-figure[data-level="dry"] .dog-mouth {
-      width: 0.86rem;
-      height: 0.26rem;
-      border-bottom-width: 0.16rem;
-    }
-
-    .dog-figure[data-level="dry"] .dog-tail {
-      animation: tail-wag-slow 1.8s ease-in-out infinite;
+    .dog-figure[data-level="dry"] {
+      transform: translateY(-0.1rem);
     }
 
     .dog-figure[data-level="dry"] .dog-head {
-      animation: head-tilt-dry 2.8s ease-in-out infinite;
+      animation: head-tilt-dry 3.4s ease-in-out infinite;
+    }
+
+    .dog-figure[data-level="dry"] .dog-tail {
+      animation: tail-flick-dry 4.4s ease-in-out infinite;
+    }
+
+    .dog-figure[data-level="dry"] .dog-eye {
+      animation: blink-dry 6s ease-in-out infinite;
+    }
+
+    .dog-figure[data-level="dry"] .dog-brow--left {
+      transform: rotate(-28deg) translateY(-0.08rem);
+    }
+
+    .dog-figure[data-level="dry"] .dog-brow--right {
+      transform: rotate(10deg);
+    }
+
+    .dog-figure[data-level="dry"] .dog-mouth {
+      width: 0.84rem;
+      height: 0.22rem;
+      border-bottom-width: 0.15rem;
     }
 
     .dog-figure[data-level="full"] {
-      animation: body-bob 1.15s ease-in-out infinite;
+      animation: body-bob-full 0.95s ease-in-out infinite;
+      transform: translateY(-0.2rem) translateX(0.05rem);
     }
 
     .dog-figure[data-level="full"] .dog-head {
-      animation: head-tilt-full 1.2s ease-in-out infinite;
-      transform: rotate(-2deg) translateX(0.18rem);
+      animation: head-tilt-full 0.95s ease-in-out infinite;
+      transform: rotate(-4deg) translateX(0.35rem) translateY(-0.05rem);
     }
 
     .dog-figure[data-level="full"] .dog-tail {
-      animation: tail-wag-fast 0.8s ease-in-out infinite;
+      animation: tail-wag-full 0.55s ease-in-out infinite;
+      width: 2.2rem;
     }
 
     .dog-figure[data-level="full"] .dog-ear--left {
-      transform: rotate(4deg);
+      transform: rotate(-8deg);
+      animation: ear-flick-full-left 2s ease-in-out infinite;
     }
 
     .dog-figure[data-level="full"] .dog-ear--right {
-      transform: rotate(-2deg);
+      transform: rotate(6deg);
+      animation: ear-flick-full-right 2s ease-in-out infinite;
     }
 
     .dog-figure[data-level="full"] .dog-brow--left {
-      transform: rotate(-4deg);
+      transform: rotate(-10deg) translateY(-0.04rem);
     }
 
     .dog-figure[data-level="full"] .dog-brow--right {
-      transform: rotate(4deg);
+      transform: rotate(14deg);
     }
 
     .dog-figure[data-level="full"] .dog-mouth {
-      width: 1.04rem;
-      height: 0.62rem;
+      width: 1.08rem;
+      height: 0.58rem;
       border: 0.18rem solid var(--heading);
       border-top: 0;
       border-radius: 0 0 1rem 1rem;
     }
 
     .dog-figure[data-level="bites"] {
-      animation: body-brace 0.9s ease-in-out infinite;
+      animation: body-brace-bites 0.52s ease-in-out infinite;
+      transform: translateY(-0.12rem) translateX(0.18rem) scale(1.04);
     }
 
     .dog-figure[data-level="bites"] .dog-head {
-      animation: head-lunge 0.72s ease-in-out infinite;
-      transform: rotate(-6deg) translateX(0.48rem);
+      animation: head-lunge-bites 0.48s ease-in-out infinite;
+      transform: rotate(-9deg) translateX(0.9rem) translateY(-0.1rem);
     }
 
     .dog-figure[data-level="bites"] .dog-tail {
-      animation: tail-twitch 0.28s linear infinite;
-      width: 1.45rem;
+      animation: tail-twitch-bites 0.18s linear infinite;
+      width: 1.2rem;
     }
 
     .dog-figure[data-level="bites"] .dog-ear--left {
-      transform: rotate(30deg);
+      transform: rotate(38deg);
     }
 
     .dog-figure[data-level="bites"] .dog-ear--right {
-      transform: rotate(-30deg);
+      transform: rotate(-38deg);
     }
 
     .dog-figure[data-level="bites"] .dog-brow--left {
-      transform: rotate(-30deg);
+      transform: rotate(-40deg) translateY(-0.06rem);
     }
 
     .dog-figure[data-level="bites"] .dog-brow--right {
-      transform: rotate(30deg);
+      transform: rotate(40deg) translateY(-0.06rem);
     }
 
     .dog-figure[data-level="bites"] .dog-mouth {
-      width: 1.28rem;
-      height: 0.84rem;
+      width: 1.32rem;
+      height: 0.88rem;
       border: 0.18rem solid var(--heading);
       border-top: 0;
       border-radius: 0 0 1rem 1rem;
@@ -662,44 +676,68 @@
       right: 0.22rem;
     }
 
-    @keyframes tail-wag-slow {
-      0%, 100% { transform: rotate(16deg); }
-      50% { transform: rotate(-10deg); }
+    @keyframes tail-flick-dry {
+      0%, 85%, 100% { transform: rotate(8deg); }
+      90% { transform: rotate(-3deg); }
+      95% { transform: rotate(12deg); }
     }
 
-    @keyframes tail-wag-fast {
-      0%, 100% { transform: rotate(24deg); }
-      50% { transform: rotate(-24deg); }
+    @keyframes tail-wag-full {
+      0%, 100% { transform: rotate(34deg); }
+      50% { transform: rotate(-34deg); }
     }
 
-    @keyframes tail-twitch {
-      0%, 100% { transform: rotate(8deg); }
-      50% { transform: rotate(-2deg); }
+    @keyframes tail-twitch-bites {
+      0%, 100% { transform: rotate(14deg); }
+      25% { transform: rotate(-10deg); }
+      50% { transform: rotate(18deg); }
+      75% { transform: rotate(-6deg); }
+    }
+
+    @keyframes blink-dry {
+      0%, 46%, 52%, 100% {
+        transform: scaleY(1);
+      }
+      48%, 50% {
+        transform: scaleY(0.12);
+      }
     }
 
     @keyframes head-tilt-dry {
-      0%, 100% { transform: rotate(-4deg) translateY(0); }
-      50% { transform: rotate(2deg) translateY(-0.12rem); }
+      0%, 100% { transform: rotate(-6deg) translateY(0); }
+      50% { transform: rotate(4deg) translateY(-0.1rem); }
     }
 
     @keyframes head-tilt-full {
-      0%, 100% { transform: rotate(-2deg) translateX(0.18rem); }
-      50% { transform: rotate(2deg) translateX(0.34rem) translateY(-0.08rem); }
+      0%, 100% { transform: rotate(-4deg) translateX(0.35rem) translateY(-0.05rem); }
+      50% { transform: rotate(3deg) translateX(0.6rem) translateY(-0.18rem); }
     }
 
-    @keyframes head-lunge {
-      0%, 100% { transform: rotate(-6deg) translateX(0.48rem); }
-      50% { transform: rotate(-10deg) translateX(0.9rem); }
+    @keyframes head-lunge-bites {
+      0%, 100% { transform: rotate(-9deg) translateX(0.9rem) translateY(-0.1rem); }
+      50% { transform: rotate(-14deg) translateX(1.28rem) translateY(-0.2rem); }
     }
 
-    @keyframes body-bob {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-0.18rem); }
+    @keyframes body-bob-full {
+      0%, 100% { transform: translateY(-0.2rem) translateX(0.05rem); }
+      50% { transform: translateY(-0.42rem) translateX(0.1rem); }
     }
 
-    @keyframes body-brace {
-      0%, 100% { transform: translateX(0.05rem) scale(1.02); }
-      50% { transform: translateX(0.14rem) scale(1.03); }
+    @keyframes body-brace-bites {
+      0%, 100% { transform: translateY(-0.12rem) translateX(0.18rem) scale(1.04); }
+      50% { transform: translateY(-0.04rem) translateX(0.28rem) scale(1.06); }
+    }
+
+    @keyframes ear-flick-full-left {
+      0%, 85%, 100% { transform: rotate(-8deg); }
+      90% { transform: rotate(-20deg); }
+      95% { transform: rotate(-4deg); }
+    }
+
+    @keyframes ear-flick-full-right {
+      0%, 85%, 100% { transform: rotate(6deg); }
+      90% { transform: rotate(20deg); }
+      95% { transform: rotate(8deg); }
     }
 .site-footer {
       padding: var(--space-3) 0 var(--space-5);
@@ -747,10 +785,8 @@
         transition: none !important;
       }
 
-      .dog-animation,
-      .dog-animation *,
-      .dog-animation-stage,
-      .dog-animation-stage * {
+      .dog-figure,
+      .dog-figure * {
         animation: none !important;
         transform: none !important;
       }
@@ -1139,18 +1175,18 @@
     const dogReactions = {
       dry: {
         label: 'Dry sarcasm dog',
-        animatedAnnouncement: 'Animated dog shown. Dry sarcasm dog gives a calm side-eye, a slight head tilt, and a slow tail wag.',
-        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Dry sarcasm dog gives a calm side-eye with a slight head tilt.'
+        animatedAnnouncement: 'Animated dog shown. Dry sarcasm dog gives a long side-eye, a measured head tilt, a blink, and only the faintest tail flick.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Dry sarcasm dog gives a long side-eye with a measured head tilt.'
       },
       full: {
         label: 'Full snark dog',
-        animatedAnnouncement: 'Animated dog shown. Full snark dog stands more alert, leans forward, and bobs with a sharper expression.',
-        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Full snark dog stands more alert with a sharper judging expression.'
+        animatedAnnouncement: 'Animated dog shown. Full snark dog stands upright, leans forward, bobs with attitude, flicks the ears, and wags more broadly.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Full snark dog stands upright and forward with a sharper judging expression.'
       },
       bites: {
         label: 'The dog bites dog',
-        animatedAnnouncement: 'Animated dog shown. The dog bites reaction braces forward, pins the ears back, twitches the tail, and shows visible teeth.',
-        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. The dog bites reaction braces forward with pinned ears and visible teeth.'
+        animatedAnnouncement: 'Animated dog shown. The dog bites reaction braces hard, lunges forward, pins the ears back, snaps the tail, and shows visible teeth.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. The dog bites reaction braces hard forward with pinned ears and visible teeth.'
       }
     };
 
