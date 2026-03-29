@@ -336,6 +336,268 @@
       border: 2px solid var(--accent-hover);
     }
 
+
+    .result-figure {
+      margin-bottom: var(--space-3);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .dog-stage {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: min(100%, 18rem);
+      min-height: 12rem;
+      padding: 1rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #ffffff 0%, var(--surface) 100%);
+    }
+
+    .dog-figure {
+      position: relative;
+      width: 11rem;
+      height: 8.5rem;
+    }
+
+    .dog-body {
+      position: absolute;
+      left: 2.2rem;
+      bottom: 0.7rem;
+      width: 5.8rem;
+      height: 3.6rem;
+      background: #f3c778;
+      border: 0.18rem solid var(--heading);
+      border-radius: 45% 50% 40% 40%;
+    }
+
+    .dog-body::after {
+      content: "";
+      position: absolute;
+      right: -0.8rem;
+      top: 1rem;
+      width: 1.1rem;
+      height: 0.3rem;
+      background: var(--heading);
+      border-radius: 999px;
+      transform-origin: left center;
+      animation: tail-wag 1.2s ease-in-out infinite;
+    }
+
+    .dog-head {
+      position: absolute;
+      left: 0.8rem;
+      top: 1rem;
+      width: 4.4rem;
+      height: 4.1rem;
+      background: #f3c778;
+      border: 0.18rem solid var(--heading);
+      border-radius: 46% 46% 42% 42%;
+      animation: dog-bob 2.8s ease-in-out infinite;
+    }
+
+    .dog-ear {
+      position: absolute;
+      top: -0.1rem;
+      width: 1.2rem;
+      height: 2.1rem;
+      background: #d69b4f;
+      border: 0.18rem solid var(--heading);
+      border-radius: 0.8rem 0.8rem 1rem 1rem;
+      transform-origin: top center;
+    }
+
+    .dog-ear--left {
+      left: 0.5rem;
+      transform: rotate(12deg);
+    }
+
+    .dog-ear--right {
+      right: 0.5rem;
+      transform: rotate(-12deg);
+    }
+
+    .dog-eye {
+      position: absolute;
+      top: 1.55rem;
+      width: 0.42rem;
+      height: 0.42rem;
+      background: var(--heading);
+      border-radius: 50%;
+    }
+
+    .dog-eye--left { left: 1.1rem; }
+    .dog-eye--right { right: 1.1rem; }
+
+    .dog-brow {
+      position: absolute;
+      top: 1.1rem;
+      width: 1rem;
+      height: 0.2rem;
+      background: var(--heading);
+      border-radius: 999px;
+      transform-origin: center;
+    }
+
+    .dog-brow--left { left: 0.75rem; }
+    .dog-brow--right { right: 0.75rem; }
+
+    .dog-snout {
+      position: absolute;
+      left: 1.25rem;
+      bottom: 0.55rem;
+      width: 1.8rem;
+      height: 1.2rem;
+      background: #f8e4b9;
+      border: 0.18rem solid var(--heading);
+      border-radius: 45% 45% 60% 60%;
+    }
+
+    .dog-nose {
+      position: absolute;
+      left: 50%;
+      top: 0.18rem;
+      width: 0.7rem;
+      height: 0.45rem;
+      background: var(--heading);
+      border-radius: 45% 45% 70% 70%;
+      transform: translateX(-50%);
+    }
+
+    .dog-mouth {
+      position: absolute;
+      left: 50%;
+      bottom: 0.18rem;
+      width: 1rem;
+      height: 0.55rem;
+      border-bottom: 0.18rem solid var(--heading);
+      border-radius: 0 0 1rem 1rem;
+      transform: translateX(-50%);
+    }
+
+    .dog-leg {
+      position: absolute;
+      bottom: -1.1rem;
+      width: 0.7rem;
+      height: 1.4rem;
+      background: #f3c778;
+      border: 0.18rem solid var(--heading);
+      border-radius: 0 0 0.5rem 0.5rem;
+    }
+
+    .dog-leg--front {
+      left: 2.6rem;
+    }
+
+    .dog-leg--back {
+      right: 1.2rem;
+    }
+
+    .dog-level-label {
+      margin-top: 0.75rem;
+      margin-bottom: 0;
+      font-weight: 700;
+    }
+
+    .dog-figure[data-level="dry"] .dog-brow--left {
+      transform: rotate(-18deg);
+    }
+
+    .dog-figure[data-level="dry"] .dog-brow--right {
+      transform: rotate(12deg);
+    }
+
+    .dog-figure[data-level="dry"] .dog-mouth {
+      width: 0.9rem;
+      height: 0.35rem;
+      border-bottom-width: 0.16rem;
+    }
+
+    .dog-figure[data-level="full"] .dog-head {
+      animation-duration: 1.9s;
+    }
+
+    .dog-figure[data-level="full"] .dog-body::after {
+      animation-duration: 0.7s;
+    }
+
+    .dog-figure[data-level="full"] .dog-brow--left,
+    .dog-figure[data-level="full"] .dog-brow--right {
+      transform: rotate(0deg);
+    }
+
+    .dog-figure[data-level="full"] .dog-mouth {
+      width: 1.1rem;
+      height: 0.8rem;
+      border: 0.18rem solid var(--heading);
+      border-top: 0;
+      border-radius: 0 0 1rem 1rem;
+    }
+
+    .dog-figure[data-level="bites"] .dog-head {
+      animation-duration: 1.1s;
+    }
+
+    .dog-figure[data-level="bites"] .dog-body::after {
+      animation-duration: 0.35s;
+    }
+
+    .dog-figure[data-level="bites"] .dog-ear--left {
+      transform: rotate(24deg);
+    }
+
+    .dog-figure[data-level="bites"] .dog-ear--right {
+      transform: rotate(-24deg);
+    }
+
+    .dog-figure[data-level="bites"] .dog-brow--left {
+      transform: rotate(-28deg);
+    }
+
+    .dog-figure[data-level="bites"] .dog-brow--right {
+      transform: rotate(28deg);
+    }
+
+    .dog-figure[data-level="bites"] .dog-mouth {
+      width: 1.25rem;
+      height: 0.8rem;
+      border: 0.18rem solid var(--heading);
+      border-top: 0;
+      border-radius: 0 0 1rem 1rem;
+    }
+
+    .dog-figure[data-level="bites"] .dog-mouth::before,
+    .dog-figure[data-level="bites"] .dog-mouth::after {
+      content: "";
+      position: absolute;
+      top: -0.02rem;
+      width: 0.16rem;
+      height: 0.42rem;
+      background: #ffffff;
+      border: 0.08rem solid var(--heading);
+      border-top: 0;
+      border-radius: 0 0 0.15rem 0.15rem;
+    }
+
+    .dog-figure[data-level="bites"] .dog-mouth::before {
+      left: 0.22rem;
+    }
+
+    .dog-figure[data-level="bites"] .dog-mouth::after {
+      right: 0.22rem;
+    }
+
+    @keyframes tail-wag {
+      0%, 100% { transform: rotate(22deg); }
+      50% { transform: rotate(-18deg); }
+    }
+
+    @keyframes dog-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-0.28rem); }
+    }
+
     .site-footer {
       padding: var(--space-3) 0 var(--space-5);
       border-top: 1px solid var(--border-subtle);
@@ -380,6 +642,14 @@
       *::before,
       *::after {
         transition: none !important;
+      }
+
+      .dog-animation,
+      .dog-animation *,
+      .dog-animation-stage,
+      .dog-animation-stage * {
+        animation: none !important;
+        transform: none !important;
       }
     }
   </style>
@@ -459,6 +729,31 @@
 
       <div class="result-panel" aria-labelledby="result-heading">
         <h3 id="result-heading">Generated response</h3>
+
+        <div class="result-figure dog-animation" aria-labelledby="dog-figure-heading">
+          <p id="dog-figure-heading" class="result-label">Animated dog reaction</p>
+          <div class="dog-stage dog-animation-stage">
+            <div id="dog-figure" class="dog-figure" data-level="dry" role="img" aria-label="Animated guide dog reaction. A description will be announced when you generate a response.">
+              <div class="dog-head">
+                <span class="dog-ear dog-ear--left" aria-hidden="true"></span>
+                <span class="dog-ear dog-ear--right" aria-hidden="true"></span>
+                <span class="dog-brow dog-brow--left" aria-hidden="true"></span>
+                <span class="dog-brow dog-brow--right" aria-hidden="true"></span>
+                <span class="dog-eye dog-eye--left" aria-hidden="true"></span>
+                <span class="dog-eye dog-eye--right" aria-hidden="true"></span>
+                <span class="dog-snout" aria-hidden="true">
+                  <span class="dog-nose" aria-hidden="true"></span>
+                  <span class="dog-mouth" aria-hidden="true"></span>
+                </span>
+              </div>
+              <div class="dog-body" aria-hidden="true"></div>
+              <div class="dog-leg dog-leg--front" aria-hidden="true"></div>
+              <div class="dog-leg dog-leg--back" aria-hidden="true"></div>
+            </div>
+          </div>
+          <p id="dog-level-label" class="dog-level-label">No reaction selected yet.</p>
+          <p id="dog-description" class="visually-hidden" aria-live="polite" aria-atomic="true">Animated dog reaction will be announced here after you generate a response.</p>
+        </div>
 
         <div id="live-result" aria-live="polite" aria-atomic="true">
           <div class="result-block">
@@ -718,6 +1013,9 @@
     const snarkOutput = document.getElementById('snark-output');
     const explanationOutput = document.getElementById('explanation-output');
     const copyButton = document.getElementById('copy-button');
+    const dogFigure = document.getElementById('dog-figure');
+    const dogLevelLabel = document.getElementById('dog-level-label');
+    const dogDescription = document.getElementById('dog-description');
     const copyStatus = document.getElementById('copy-status');
     const formError = document.getElementById('form-error');
     const levelGroup = document.getElementById('level-group');
@@ -729,6 +1027,41 @@
     function getSelectedLevel() {
       const selected = document.querySelector('input[name="level"]:checked');
       return selected ? selected.value : '';
+    }
+
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const dogReactions = {
+      dry: {
+        label: 'Dry sarcasm dog',
+        animatedAnnouncement: 'Animated dog shown. Dry sarcasm dog gives a calm side-eye and a slow tail wag.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Dry sarcasm dog gives a calm side-eye.'
+      },
+      full: {
+        label: 'Full snark dog',
+        animatedAnnouncement: 'Animated dog shown. Full snark dog looks alert with a brisk tail wag and a more animated face.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Full snark dog looks alert with a judging expression.'
+      },
+      bites: {
+        label: 'The dog bites dog',
+        animatedAnnouncement: 'Animated dog shown. The dog bites reaction shows a tense expression, fast tail movement, and visible teeth.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. The dog bites reaction shows a tense expression and visible teeth.'
+      }
+    };
+
+    function updateDogReaction(level) {
+      const reaction = dogReactions[level];
+      if (!reaction) {
+        return;
+      }
+
+      const announcement = prefersReducedMotion ? reaction.reducedMotionAnnouncement : reaction.animatedAnnouncement;
+
+      dogFigure.setAttribute('data-level', level);
+      dogFigure.setAttribute('aria-label', announcement);
+      dogLevelLabel.textContent = reaction.label;
+      dogDescription.textContent = announcement;
     }
 
     function clearValidationState() {
@@ -769,6 +1102,7 @@
       const snark = getRandomItem(entry[level]);
       const explanation = entry.explanation;
 
+      updateDogReaction(level);
       snarkOutput.textContent = snark;
       explanationOutput.textContent = explanation;
       copyStatus.textContent = '';
@@ -807,6 +1141,8 @@
         }
       });
     });
+
+    updateDogReaction('dry');
 
     copyButton.addEventListener('click', async function () {
       const snark = snarkOutput.textContent.trim();
