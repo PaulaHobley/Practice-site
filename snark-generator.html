@@ -583,36 +583,36 @@
     }
 
     .dog-figure[data-level="full"] {
-      animation: body-bob-full 0.95s ease-in-out infinite;
-      transform: translateY(-0.2rem) translateX(0.05rem);
+      animation: body-bob-full 0.88s ease-in-out infinite;
+      transform: translateY(-0.24rem) translateX(0.12rem) scale(1.02);
     }
 
     .dog-figure[data-level="full"] .dog-head {
-      animation: head-tilt-full 0.95s ease-in-out infinite;
-      transform: rotate(-4deg) translateX(0.35rem) translateY(-0.05rem);
+      animation: head-tilt-full 0.82s ease-in-out infinite;
+      transform: rotate(-6deg) translateX(0.52rem) translateY(-0.08rem);
     }
 
     .dog-figure[data-level="full"] .dog-tail {
-      animation: tail-wag-full 0.55s ease-in-out infinite;
-      width: 2.2rem;
+      animation: tail-wag-full 0.72s ease-in-out infinite;
+      width: 1.8rem;
     }
 
     .dog-figure[data-level="full"] .dog-ear--left {
-      transform: rotate(-8deg);
-      animation: ear-flick-full-left 2s ease-in-out infinite;
+      transform: rotate(-14deg);
+      animation: ear-flick-full-left 1.8s ease-in-out infinite;
     }
 
     .dog-figure[data-level="full"] .dog-ear--right {
-      transform: rotate(6deg);
-      animation: ear-flick-full-right 2s ease-in-out infinite;
+      transform: rotate(10deg);
+      animation: ear-flick-full-right 1.8s ease-in-out infinite;
     }
 
     .dog-figure[data-level="full"] .dog-brow--left {
-      transform: rotate(-10deg) translateY(-0.04rem);
+      transform: rotate(-16deg) translateY(-0.06rem);
     }
 
     .dog-figure[data-level="full"] .dog-brow--right {
-      transform: rotate(14deg);
+      transform: rotate(18deg) translateY(-0.02rem);
     }
 
     .dog-figure[data-level="full"] .dog-mouth {
@@ -624,39 +624,39 @@
     }
 
     .dog-figure[data-level="bites"] {
-      animation: body-brace-bites 0.42s ease-in-out infinite;
-      transform: translateY(-0.16rem) translateX(0.28rem) scale(1.06);
+      animation: body-brace-bites 0.36s steps(1, end) infinite;
+      transform: translateY(-0.18rem) translateX(0.34rem) scale(1.08);
     }
 
     .dog-figure[data-level="bites"] .dog-head {
-      animation: head-lunge-bites 0.34s ease-in-out infinite;
-      transform: rotate(-12deg) translateX(1.1rem) translateY(-0.14rem);
+      animation: head-lunge-bites 0.24s steps(1, end) infinite;
+      transform: rotate(-14deg) translateX(1.22rem) translateY(-0.16rem);
     }
 
     .dog-figure[data-level="bites"] .dog-tail {
-      animation: tail-twitch-bites 0.12s linear infinite;
-      width: 0.9rem;
+      animation: tail-twitch-bites 0.09s steps(1, end) infinite;
+      width: 0.72rem;
     }
 
     .dog-figure[data-level="bites"] .dog-ear--left {
-      transform: rotate(48deg);
+      transform: rotate(56deg);
     }
 
     .dog-figure[data-level="bites"] .dog-ear--right {
-      transform: rotate(-48deg);
+      transform: rotate(-56deg);
     }
 
     .dog-figure[data-level="bites"] .dog-brow--left {
-      transform: rotate(-48deg) translateY(-0.08rem);
+      transform: rotate(-56deg) translateY(-0.1rem);
     }
 
     .dog-figure[data-level="bites"] .dog-brow--right {
-      transform: rotate(48deg) translateY(-0.08rem);
+      transform: rotate(56deg) translateY(-0.1rem);
     }
 
     .dog-figure[data-level="bites"] .dog-mouth {
-      width: 1.44rem;
-      height: 1rem;
+      width: 1.56rem;
+      height: 1.08rem;
       border: 0.18rem solid var(--heading);
       border-top: 0;
       border-radius: 0 0 1rem 1rem;
@@ -692,15 +692,16 @@
     }
 
     @keyframes tail-wag-full {
-      0%, 100% { transform: rotate(34deg); }
-      50% { transform: rotate(-34deg); }
+      0%, 100% { transform: rotate(18deg); }
+      35% { transform: rotate(-12deg); }
+      70% { transform: rotate(22deg); }
     }
 
     @keyframes tail-twitch-bites {
-      0%, 100% { transform: rotate(18deg); }
-      20% { transform: rotate(-16deg); }
-      45% { transform: rotate(22deg); }
-      70% { transform: rotate(-12deg); }
+      0%, 100% { transform: rotate(20deg); }
+      18% { transform: rotate(-20deg); }
+      42% { transform: rotate(24deg); }
+      68% { transform: rotate(-16deg); }
     }
 
     @keyframes blink-dry {
@@ -719,35 +720,38 @@
     }
 
     @keyframes head-tilt-full {
-      0%, 100% { transform: rotate(-4deg) translateX(0.35rem) translateY(-0.05rem); }
-      50% { transform: rotate(3deg) translateX(0.6rem) translateY(-0.18rem); }
+      0%, 100% { transform: rotate(-6deg) translateX(0.52rem) translateY(-0.08rem); }
+      45% { transform: rotate(5deg) translateX(0.82rem) translateY(-0.22rem); }
+      70% { transform: rotate(1deg) translateX(0.68rem) translateY(-0.14rem); }
     }
 
     @keyframes head-lunge-bites {
-      0%, 100% { transform: rotate(-12deg) translateX(1.1rem) translateY(-0.14rem); }
-      50% { transform: rotate(-18deg) translateX(1.65rem) translateY(-0.28rem); }
+      0%, 55%, 100% { transform: rotate(-14deg) translateX(1.22rem) translateY(-0.16rem); }
+      18% { transform: rotate(-22deg) translateX(1.92rem) translateY(-0.34rem); }
+      36% { transform: rotate(-15deg) translateX(1.3rem) translateY(-0.18rem); }
     }
 
     @keyframes body-bob-full {
-      0%, 100% { transform: translateY(-0.2rem) translateX(0.05rem); }
-      50% { transform: translateY(-0.42rem) translateX(0.1rem); }
+      0%, 100% { transform: translateY(-0.24rem) translateX(0.12rem) scale(1.02); }
+      50% { transform: translateY(-0.46rem) translateX(0.18rem) scale(1.03); }
     }
 
     @keyframes body-brace-bites {
-      0%, 100% { transform: translateY(-0.16rem) translateX(0.28rem) scale(1.06); }
-      50% { transform: translateY(-0.02rem) translateX(0.4rem) scale(1.08); }
+      0%, 55%, 100% { transform: translateY(-0.18rem) translateX(0.34rem) scale(1.08); }
+      18% { transform: translateY(-0.04rem) translateX(0.48rem) scale(1.1); }
+      36% { transform: translateY(-0.16rem) translateX(0.36rem) scale(1.08); }
     }
 
     @keyframes ear-flick-full-left {
-      0%, 85%, 100% { transform: rotate(-8deg); }
-      90% { transform: rotate(-20deg); }
-      95% { transform: rotate(-4deg); }
+      0%, 82%, 100% { transform: rotate(-14deg); }
+      87% { transform: rotate(-26deg); }
+      92% { transform: rotate(-10deg); }
     }
 
     @keyframes ear-flick-full-right {
-      0%, 85%, 100% { transform: rotate(6deg); }
-      90% { transform: rotate(20deg); }
-      95% { transform: rotate(8deg); }
+      0%, 82%, 100% { transform: rotate(10deg); }
+      87% { transform: rotate(24deg); }
+      92% { transform: rotate(12deg); }
     }
 .site-footer {
       padding: var(--space-3) 0 var(--space-5);
@@ -878,6 +882,7 @@
 
       <div class="result-panel" aria-labelledby="result-heading">
         <h3 id="result-heading">Generated response</h3>
+        <p id="dog-live-announcement" class="visually-hidden" aria-live="assertive" aria-atomic="true"></p>
         <div id="dog-result" class="result-figure dog-animation" aria-labelledby="dog-figure-heading" hidden>
           <p id="dog-figure-heading" class="result-label">Animated dog reaction</p>
           <div class="dog-stage dog-animation-stage">
@@ -903,7 +908,7 @@
             </div>
           </div>
           <p id="dog-level-label" class="dog-level-label"></p>
-          <p id="dog-description" class="visually-hidden" aria-live="polite" aria-atomic="true"></p>
+          <p id="dog-description" class="visually-hidden"></p>
         </div>
         <div id="live-result" aria-live="polite" aria-atomic="true">
           <div class="result-block">
@@ -1167,6 +1172,7 @@
     const dogFigure = document.getElementById('dog-figure');
     const dogLevelLabel = document.getElementById('dog-level-label');
     const dogDescription = document.getElementById('dog-description');
+    const dogLiveAnnouncement = document.getElementById('dog-live-announcement');
     const copyStatus = document.getElementById('copy-status');
     const formError = document.getElementById('form-error');
     const levelGroup = document.getElementById('level-group');
@@ -1190,13 +1196,13 @@
       },
       full: {
         label: 'Full snark dog',
-        animatedAnnouncement: 'Animated dog shown. Full snark dog stands upright, leans forward, bobs with attitude, flicks the ears, and wags more broadly.',
-        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Full snark dog stands upright and forward with a sharper judging expression.'
+        animatedAnnouncement: 'Animated dog shown. Full snark dog leans in, gives a sharper head tilt, flicks the ears, and wags with controlled attitude.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Full snark dog leans forward with a sharper, more engaged judging expression.'
       },
       bites: {
         label: 'The dog bites dog',
-        animatedAnnouncement: 'Animated dog shown. The dog bites reaction braces hard, throws the head sharply forward, pins the ears back, snaps the tail tight, and bares more visible teeth.',
-        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. The dog bites reaction holds a hard forward brace with pinned ears and more visible teeth.'
+        animatedAnnouncement: 'Animated dog shown. The dog bites reaction snaps forward with a hard brace, lunges the head sharply, pins the ears back, tightens the tail, and bares larger teeth.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. The dog bites reaction holds a hard forward brace with pinned ears, a tighter tail, and larger visible teeth.'
       }
     };
 
@@ -1206,6 +1212,7 @@
       dogFigure.setAttribute('aria-label', 'Dog reaction placeholder. Generate a response to reveal the dog reaction.');
       dogLevelLabel.textContent = '';
       dogDescription.textContent = '';
+      dogLiveAnnouncement.textContent = '';
     }
 
     function updateDogReaction(level) {
@@ -1221,10 +1228,12 @@
       dogFigure.setAttribute('data-level', level);
       dogFigure.setAttribute('aria-label', announcement);
       dogLevelLabel.textContent = reaction.label;
-      dogDescription.textContent = '';
-      window.requestAnimationFrame(function () {
-        dogDescription.textContent = announcement;
-      });
+      dogDescription.textContent = announcement;
+      dogLiveAnnouncement.textContent = '';
+
+      window.setTimeout(function () {
+        dogLiveAnnouncement.textContent = announcement + ' ';
+      }, 60);
     }
 
     function clearValidationState() {
