@@ -882,7 +882,7 @@
 
       <div class="result-panel" aria-labelledby="result-heading">
         <h3 id="result-heading">Generated response</h3>
-        <p id="dog-live-announcement" class="visually-hidden" aria-live="assertive" aria-atomic="true"></p>
+        <div id="dog-live-announcement" class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true" aria-relevant="all"></div>
         <div id="dog-result" class="result-figure dog-animation" aria-labelledby="dog-figure-heading" hidden>
           <p id="dog-figure-heading" class="result-label">Animated dog reaction</p>
           <div class="dog-stage dog-animation-stage">
@@ -1232,8 +1232,11 @@
       dogLiveAnnouncement.textContent = '';
 
       window.setTimeout(function () {
-        dogLiveAnnouncement.textContent = announcement + ' ';
-      }, 60);
+        dogLiveAnnouncement.textContent = '';
+        const liveMessage = document.createElement('span');
+        liveMessage.textContent = announcement + ' ';
+        dogLiveAnnouncement.replaceChildren(liveMessage);
+      }, 120);
     }
 
     function clearValidationState() {
