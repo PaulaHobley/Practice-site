@@ -1191,8 +1191,8 @@
     const dogReactions = {
       dry: {
         label: 'Dry sarcasm dog',
-        animatedAnnouncement: 'Animated dog shown. Dry sarcasm dog delivers a longer side-eye, a slower head tilt, a deliberate blink, and only the tiniest tail flick.',
-        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Dry sarcasm dog delivers a longer side-eye with a slower, more dismissive head tilt.'
+        animatedAnnouncement: 'Animated dog shown. Dry sarcasm dog: longer side-eye, slower head tilt, deliberate blink, and only the tiniest tail flick.',
+        reducedMotionAnnouncement: 'Dog shown without animation because reduced motion is enabled. Dry sarcasm dog: longer side-eye with a slower, more dismissive head tilt.'
       },
       full: {
         label: 'Full snark dog',
@@ -1229,14 +1229,11 @@
       dogFigure.setAttribute('aria-label', announcement);
       dogLevelLabel.textContent = reaction.label;
       dogDescription.textContent = announcement;
-      dogLiveAnnouncement.textContent = '';
 
-      window.setTimeout(function () {
-        dogLiveAnnouncement.textContent = '';
-        const liveMessage = document.createElement('span');
-        liveMessage.textContent = announcement + ' ';
-        dogLiveAnnouncement.replaceChildren(liveMessage);
-      }, 120);
+      const liveMessage = document.createElement('span');
+      liveMessage.textContent = announcement + ' ';
+      dogLiveAnnouncement.replaceChildren();
+      dogLiveAnnouncement.appendChild(liveMessage);
     }
 
     function clearValidationState() {
@@ -1269,6 +1266,12 @@
       return errors.length === 0;
     }
 
+    function updateResponseText(snark, explanation) {
+      snarkOutput.textContent = snark;
+      explanationOutput.textContent = explanation;
+      copyStatus.textContent = '';
+    }
+
     function generateResponse() {
       const scenario = scenarioSelect.value;
       const level = getSelectedLevel();
@@ -1278,9 +1281,10 @@
       const explanation = entry.explanation;
 
       updateDogReaction(level);
-      snarkOutput.textContent = snark;
-      explanationOutput.textContent = explanation;
-      copyStatus.textContent = '';
+
+      window.setTimeout(function () {
+        updateResponseText(snark, explanation);
+      }, 180);
 
       return { snark, explanation };
     }
