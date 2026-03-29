@@ -910,7 +910,7 @@
           <p id="dog-level-label" class="dog-level-label"></p>
           <p id="dog-description" class="visually-hidden"></p>
         </div>
-        <div id="live-result" aria-live="polite" aria-atomic="true">
+        <div id="live-result">
           <div class="result-block">
             <p class="result-label">Snark</p>
             <p id="snark-output">Choose a scenario and a snark level, then activate Generate response.</p>
@@ -922,6 +922,7 @@
           </div>
         </div>
 
+        <p id="generated-announcement" class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true" aria-relevant="all"></p>
         <p id="copy-status" class="status-text" aria-live="polite"></p>
       </div>
     </section>
@@ -1173,6 +1174,7 @@
     const dogLevelLabel = document.getElementById('dog-level-label');
     const dogDescription = document.getElementById('dog-description');
     const dogLiveAnnouncement = document.getElementById('dog-live-announcement');
+    const generatedAnnouncement = document.getElementById('generated-announcement');
     const copyStatus = document.getElementById('copy-status');
     const formError = document.getElementById('form-error');
     const levelGroup = document.getElementById('level-group');
@@ -1213,6 +1215,7 @@
       dogLevelLabel.textContent = '';
       dogDescription.textContent = '';
       dogLiveAnnouncement.textContent = '';
+      generatedAnnouncement.textContent = '';
     }
 
     function updateDogReaction(level) {
@@ -1230,10 +1233,8 @@
       dogLevelLabel.textContent = reaction.label;
       dogDescription.textContent = announcement;
 
-      const liveMessage = document.createElement('span');
-      liveMessage.textContent = announcement + ' ';
-      dogLiveAnnouncement.replaceChildren();
-      dogLiveAnnouncement.appendChild(liveMessage);
+      dogLiveAnnouncement.textContent = '';
+      dogLiveAnnouncement.setAttribute('aria-hidden', 'true');
     }
 
     function clearValidationState() {
@@ -1272,6 +1273,13 @@
       copyStatus.textContent = '';
     }
 
+    function announceGeneratedResult(announcement, snark, explanation) {
+      generatedAnnouncement.textContent = '';
+      window.setTimeout(function () {
+        generatedAnnouncement.textContent = announcement + ' Snark. ' + snark + ' Explanation. ' + explanation;
+      }, 60);
+    }
+
     function generateResponse() {
       const scenario = scenarioSelect.value;
       const level = getSelectedLevel();
@@ -1279,12 +1287,12 @@
 
       const snark = getRandomItem(entry[level]);
       const explanation = entry.explanation;
+      const reaction = dogReactions[level];
+      const announcement = prefersReducedMotion ? reaction.reducedMotionAnnouncement : reaction.animatedAnnouncement;
 
       updateDogReaction(level);
-
-      window.setTimeout(function () {
-        updateResponseText(snark, explanation);
-      }, 180);
+      updateResponseText(snark, explanation);
+      announceGeneratedResult(announcement, snark, explanation);
 
       return { snark, explanation };
     }
