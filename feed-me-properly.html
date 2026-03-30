@@ -1,10 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Feed Me Properly | Experimental Web Playground</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Feed Me Properly | Experimental Web Playground</title>
+<style>
     :root {
       --bg: #faf9fc;
       --surface: #f1edf6;
@@ -282,6 +283,10 @@
       color: var(--heading);
     }
 
+    .results-status {
+      margin-bottom: var(--space-3);
+    }
+
     .result-group {
       margin-top: var(--group-gap);
     }
@@ -299,6 +304,82 @@
 
     .group-intro {
       margin-bottom: var(--space-2);
+    }
+
+    .result-accordion {
+      margin-top: var(--group-gap);
+      border: 1px solid var(--border-subtle);
+      border-radius: calc(var(--radius) + 0.1rem);
+      background: #ffffff;
+      box-shadow: var(--shadow-quiet);
+      overflow: hidden;
+    }
+
+    .result-accordion:first-of-type {
+      margin-top: 0;
+    }
+
+    .result-accordion + .result-accordion {
+      margin-top: var(--space-3);
+    }
+
+    .accordion-summary {
+      list-style: none;
+      cursor: pointer;
+      padding: var(--space-3);
+      background: #fcfbfe;
+    }
+
+    .accordion-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .accordion-summary::marker {
+      content: "";
+    }
+
+    .accordion-summary:hover {
+      background: #f7f3fb;
+    }
+
+    .accordion-summary-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+
+    .accordion-heading-group {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .accordion-heading-group .group-heading {
+      margin-bottom: 0.4rem;
+    }
+
+    .accordion-summary .group-intro {
+      margin-bottom: 0;
+    }
+
+    .accordion-icon {
+      flex: 0 0 auto;
+      font-weight: 700;
+      color: var(--accent);
+      padding-top: 0.1rem;
+    }
+
+    .result-accordion[open] .accordion-icon::before {
+      content: "Collapse section";
+    }
+
+    .result-accordion:not([open]) .accordion-icon::before {
+      content: "Expand section";
+    }
+
+    .accordion-panel {
+      padding: 0 var(--space-3) var(--space-3);
+      border-top: 1px solid var(--border-subtle);
     }
 
     .callout {
@@ -474,281 +555,306 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-
-  <header class="site-header" role="banner">
-    <p class="site-title"><a href="index.html">Experimental Web Playground</a></p>
-    <nav class="site-nav" aria-label="Primary">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="experiments.html">Experiments</a></li>
-        <li><a href="tools.html" aria-current="page">Tools</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main id="main-content" class="site-main">
-    <section class="intro">
-      <h1>Feed Me Properly</h1>
-      <p>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div aria-atomic="true" aria-live="polite" class="visually-hidden" id="sr-status-announcer"></div>
+<header class="site-header" role="banner">
+<p class="site-title"><a href="index.html">Experimental Web Playground</a></p>
+<nav aria-label="Primary" class="site-nav">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="experiments.html">Experiments</a></li>
+<li><a aria-current="page" href="tools.html">Tools</a></li>
+</ul>
+</nav>
+</header>
+<main class="site-main" id="main-content">
+<section class="intro">
+<h1>Feed Me Properly</h1>
+<p>
         A rules-based nutrition guide for real life, imperfect memory, and meals that arrive as a blur of coffee, yoghurt, wraps, and whatever the day coughed up.
       </p>
-      <p>
+<p>
         This version goes further than generic patter. It scores likely meal patterns, explains why they matter, and pairs the results with practical guidance inspired by trusted Australian nutrition resources.
       </p>
-    </section>
+</section>
+<section id="try-guide-section" aria-labelledby="tool-heading" class="content-section">
+<h2 id="tool-heading">Try the guide</h2>
+<div class="tool-layout">
+<form id="nutrition-form" novalidate="">
+<div>
+<label for="meal-input">What did you eat, or what are you planning to eat?</label>
+<p class="helper-text" id="meal-help">Include brands, rough amounts, timing, supplements, or drinks if you know them. Vague is allowed. Chaos is allowed.</p>
+<textarea aria-describedby="meal-help" id="meal-input" name="meal-input">I had a latte, muesli with Greek yoghurt and blueberries, then later a piece of pizza with cheese and salami, and a peach in the afternoon.</textarea>
+</div>
+<div>
+<label for="goal-select">Main goal</label>
+<select id="goal-select" name="goal-select">
+<option value="general">General balance</option>
+<option value="protein">Protein support</option>
+<option value="iron">Iron support</option>
+<option value="fibre">Fibre support</option>
+<option value="energy">Energy support</option>
+<option value="low-effort">Low-effort meals</option>
+<option value="budget">Budget-friendly food ideas</option>
+</select>
+</div>
+<fieldset>
+<legend>Useful context</legend>
+<p class="helper-text">These options change the practical suggestions and the caution notes.</p>
+<div class="checkbox-group">
+<label class="checkbox-option"><input name="context" type="checkbox" value="vegetarian"/> I want vegetarian-friendly advice</label>
+<label class="checkbox-option"><input name="context" type="checkbox" value="low-appetite"/> I have low appetite or I am grazing rather than eating full meals</label>
+<label class="checkbox-option"><input name="context" type="checkbox" value="sensory"/> Texture, smell, or sensory tolerance matters</label>
+<label class="checkbox-option"><input name="context" type="checkbox" value="busy"/> I need very low-effort suggestions</label>
+<label class="checkbox-option"><input name="context" type="checkbox" value="medical"/> I am asking something that may overlap with a medical issue</label>
+</div>
+</fieldset>
+<div class="button-row primary-actions">
+<button class="primary-action" type="submit">Analyse food entry</button>
+<div aria-label="Utility actions" class="button-cluster">
+<button class="secondary" id="save-entry" type="button">Save entry on this device</button>
+<button class="secondary" id="load-entry" type="button">Load saved entry</button>
+<button class="secondary" id="sample-entry" type="button">Use sample entry</button>
+<button class="secondary" type="reset">Clear form</button>
+</div>
+</div>
+</form>
+<section aria-labelledby="results-heading" class="results" hidden="" id="results">
+<h2 id="results-heading" tabindex="-1">Results</h2>
+<p class="results-intro">This report moves from the short answer to the supporting detail, so the useful bits arrive before the lecture.</p>
+<p aria-atomic="true" aria-live="polite" class="callout info-box tier-primary results-status" hidden="" id="status-message" role="status"></p>
+<details class="result-accordion" id="summary-panel" open="">
+<summary class="accordion-summary">
+<div class="accordion-summary-inner">
+<div class="accordion-heading-group">
+<h3 class="group-heading" id="group-summary-heading">Summary</h3>
+<p class="group-intro">Start here for the top-line read and the immediate signals.</p>
+</div>
+<span aria-hidden="true" class="accordion-icon"></span>
+</div>
+</summary>
+<div aria-labelledby="group-summary-heading" class="accordion-panel">
+<div class="callout info-box tier-primary">
+<h3>Quick read</h3>
+<p id="summary-text"></p>
+<div aria-label="Quick summary tags" class="pill-row" id="quick-tags"></div>
+</div>
+</div>
+</details>
+<details class="result-accordion" id="analysis-panel">
+<summary class="accordion-summary">
+<div class="accordion-summary-inner">
+<div class="accordion-heading-group">
+<h3 class="group-heading" id="group-analysis-heading">Analysis</h3>
+<p class="group-intro">This is the fuller breakdown of what looks solid and what looks a bit wobbly.</p>
+</div>
+<span aria-hidden="true" class="accordion-icon"></span>
+</div>
+</summary>
+<div aria-labelledby="group-analysis-heading" class="accordion-panel">
+<div class="callout tier-secondary">
+<span class="state-label">Detailed pattern check</span>
+<h3>Pattern scorecard</h3>
+<ul class="metric-list" id="scorecard-list"></ul>
+</div>
+<div class="callout success-box tier-secondary">
+<span class="state-label">Good signs picked up</span>
+<h3>What is working well</h3>
+<ul id="strengths-list"></ul>
+</div>
+<div class="callout warning-box tier-secondary">
+<span class="state-label">Caution points picked up</span>
+<h3>What needs attention first</h3>
+<ul id="gaps-list"></ul>
+</div>
+</div>
+</details>
+<details class="result-accordion" id="guidance-panel">
+<summary class="accordion-summary">
+<div class="accordion-summary-inner">
+<div class="accordion-heading-group">
+<h3 class="group-heading" id="group-guidance-heading">Guidance</h3>
+<p class="group-intro">This section explains why the patterns matter and what to do next.</p>
+</div>
+<span aria-hidden="true" class="accordion-icon"></span>
+</div>
+</summary>
+<div aria-labelledby="group-guidance-heading" class="accordion-panel">
+<div class="callout tier-supporting">
+<span class="state-label">Why these patterns matter</span>
+<h3>Why it matters and what Australian guidance points to</h3>
+<div id="guidance-cards"></div>
+</div>
+<div class="callout tier-secondary">
+<span class="state-label">Next-step ideas</span>
+<h3>Practical upgrades</h3>
+<ul id="suggestions-list"></ul>
+</div>
+<div class="callout tier-supporting">
+<span class="state-label">Useful source material</span>
+<h3>Relevant Australian resources</h3>
+<div id="resources-list"></div>
+</div>
+</div>
+</details>
+<details class="result-accordion" id="meta-panel">
+<summary class="accordion-summary">
+<div class="accordion-summary-inner">
+<div class="accordion-heading-group">
+<h3 class="group-heading" id="group-meta-heading">Meta</h3>
+<p class="group-intro">This is the transparency section: how much the tool recognised, and where it wants you to stay cautious.</p>
+</div>
+<span aria-hidden="true" class="accordion-icon"></span>
+</div>
+</summary>
+<div aria-labelledby="group-meta-heading" class="accordion-panel">
+<div class="callout info-box tier-supporting">
+<span class="state-label">How certain this looks</span>
+<h3>Confidence and recognised foods</h3>
+<p id="confidence-text"></p>
+<ul class="metric-list" id="recognized-foods"></ul>
+</div>
+<div class="callout danger-box tier-supporting">
+<span class="state-label">Read before over-trusting this</span>
+<h3>Important note</h3>
+<p id="disclaimer-text"></p>
+</div>
+<div class="button-row">
+<button class="secondary" id="export-results" type="button">Export results as text</button>
+</div>
+</div>
+</details>
+</section>
+</div>
+</section>
+<section class="content-section">
+<button id="toggle-how" aria-expanded="false" aria-controls="how-it-works-section" class="primary-action">
+How this version works
+</button>
+</section>
 
-    <section class="content-section" aria-labelledby="tool-heading">
-      <h2 id="tool-heading">Try the guide</h2>
-      <div class="tool-layout">
-        <form id="nutrition-form" novalidate>
-          <div>
-            <label for="meal-input">What did you eat, or what are you planning to eat?</label>
-            <p id="meal-help" class="helper-text">Include brands, rough amounts, timing, supplements, or drinks if you know them. Vague is allowed. Chaos is allowed.</p>
-            <textarea id="meal-input" name="meal-input" aria-describedby="meal-help">I had a latte, muesli with Greek yoghurt and blueberries, then later a piece of pizza with cheese and salami, and a peach in the afternoon.</textarea>
-          </div>
+<section id="how-it-works-section" aria-labelledby="how-it-works-heading" class="content-section" hidden>
+<h2 id="how-it-works-heading">How this version works</h2>
+<p class="results-intro">This section now uses the same grouped, tiered card language as the results so the page feels like one coherent system rather than two cousins who met at Christmas.</p>
+<section aria-labelledby="how-group-summary-heading" class="result-group">
+<h3 class="group-heading" id="how-group-summary-heading">Summary</h3>
+<p class="group-intro">The tool starts by giving you the short version first, because not every moment of life is a suitable time for a nutritional dissertation.</p>
+<div class="callout info-box tier-primary">
+<span class="state-label">First read</span>
+<h4>Fast pattern summary</h4>
+<ul>
+<li>It identifies likely food matches from your text and builds a rough picture of what showed up.</li>
+<li>It surfaces the headline read first so you can get the gist without wading through every detail card.</li>
+<li>It uses plain wording as well as colour so good signs, caution points, and uncertainty are named directly.</li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="how-group-analysis-heading" class="result-group">
+<h3 class="group-heading" id="how-group-analysis-heading">Analysis</h3>
+<p class="group-intro">Once the quick read is out of the way, the tool shows how it reached that conclusion.</p>
+<div class="callout tier-secondary">
+<span class="state-label">Pattern scoring</span>
+<h4>What it checks</h4>
+<ul>
+<li>It scores likely protein, fibre, iron, calcium, fruit and vegetable coverage, and steadiness of energy support.</li>
+<li>It separates good signs from caution points so the result does not blur into one giant beige nutrition paragraph.</li>
+<li>It groups related findings together, which makes the long scroll easier to scan and easier to trust.</li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="how-group-guidance-heading" class="result-group">
+<h3 class="group-heading" id="how-group-guidance-heading">Guidance</h3>
+<p class="group-intro">After the analysis, it shifts from description into practical support.</p>
+<div class="callout success-box tier-secondary">
+<span class="state-label">Useful next steps</span>
+<h4>Why the advice sounds this way</h4>
+<ul>
+<li>It injects short guidance summaries tied to Australian nutrition resources instead of just dumping a link and wandering off.</li>
+<li>It offers practical upgrades that aim for realistic improvements, not fantasy-perfect meal plans.</li>
+<li>It keeps the tone direct and usable, which is more helpful than sounding like a brochure in activewear.</li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="how-group-meta-heading" class="result-group">
+<h3 class="group-heading" id="how-group-meta-heading">Meta</h3>
+<p class="group-intro">This is the honesty layer. It tells you what the tool recognised and where it might be guessing.</p>
+<div class="callout warning-box tier-supporting">
+<span class="state-label">Keep your scepticism switched on</span>
+<h4>Transparency and limits</h4>
+<ul>
+<li>It stays transparent about uncertainty rather than pretending your vague pizza memory came with a laboratory report.</li>
+<li>It shows recognised foods and confidence cues so you can judge whether the output feels grounded.</li>
+<li>It is still heuristic, not clinical. Its job is to be useful, not theatrical.</li>
+</ul>
+</div>
+</section>
+</section>
+<section aria-labelledby="experiment-demonstrates-heading" class="content-section">
+<h2 id="experiment-demonstrates-heading">What this experiment demonstrates</h2>
+<p class="results-intro">This prototype is designed as a portfolio piece. It shows how structured content design, rules-based logic, and accessible interaction can work together in a practical tool.</p>
 
-          <div>
-            <label for="goal-select">Main goal</label>
-            <select id="goal-select" name="goal-select">
-              <option value="general">General balance</option>
-              <option value="protein">Protein support</option>
-              <option value="iron">Iron support</option>
-              <option value="fibre">Fibre support</option>
-              <option value="energy">Energy support</option>
-              <option value="low-effort">Low-effort meals</option>
-              <option value="budget">Budget-friendly food ideas</option>
-            </select>
-          </div>
+<section aria-labelledby="demo-group-structure-heading" class="result-group">
+<h3 class="group-heading" id="demo-group-structure-heading">Accessible information architecture</h3>
+<p class="group-intro">The interface is structured to support predictable navigation, progressive disclosure, and clear reading order.</p>
+<div class="callout info-box tier-secondary">
+<span class="state-label">Structure and navigation</span>
+<h4>How the interaction model is designed</h4>
+<ul>
+<li>The page separates input, results, explanation, and portfolio context into distinct sections.</li>
+<li>Results are grouped into expandable sections so users can move through the output in manageable chunks.</li>
+<li>Status updates, headings, controls, and visibility changes are intentionally structured rather than left to default browser behaviour.</li>
+</ul>
+</div>
+</section>
 
-          <fieldset>
-            <legend>Useful context</legend>
-            <p class="helper-text">These options change the practical suggestions and the caution notes.</p>
-            <div class="checkbox-group">
-              <label class="checkbox-option"><input type="checkbox" name="context" value="vegetarian"> I want vegetarian-friendly advice</label>
-              <label class="checkbox-option"><input type="checkbox" name="context" value="low-appetite"> I have low appetite or I am grazing rather than eating full meals</label>
-              <label class="checkbox-option"><input type="checkbox" name="context" value="sensory"> Texture, smell, or sensory tolerance matters</label>
-              <label class="checkbox-option"><input type="checkbox" name="context" value="busy"> I need very low-effort suggestions</label>
-              <label class="checkbox-option"><input type="checkbox" name="context" value="medical"> I am asking something that may overlap with a medical issue</label>
-            </div>
-          </fieldset>
+<section aria-labelledby="demo-group-logic-heading" class="result-group">
+<h3 class="group-heading" id="demo-group-logic-heading">Rules-based content interpretation</h3>
+<p class="group-intro">The tool translates messy everyday meal descriptions into usable guidance through explicit logic rather than opaque automation.</p>
+<div class="callout tier-secondary">
+<span class="state-label">Reasoning model</span>
+<h4>What the underlying logic demonstrates</h4>
+<ul>
+<li>Free-text input is matched against a defined food dataset using recognisable patterns and keywords.</li>
+<li>Recognised foods contribute to nutrient and pattern scoring across categories such as protein, fibre, iron, calcium, and meal balance.</li>
+<li>The output remains explainable because each conclusion is tied to visible rules and recognised inputs.</li>
+</ul>
+</div>
+</section>
 
-          <div class="button-row primary-actions">
-            <button type="submit" class="primary-action">Analyse food entry</button>
-            <div class="button-cluster" aria-label="Utility actions">
-              <button type="button" class="secondary" id="save-entry">Save entry on this device</button>
-              <button type="button" class="secondary" id="load-entry">Load saved entry</button>
-              <button type="button" class="secondary" id="sample-entry">Use sample entry</button>
-              <button type="reset" class="secondary">Clear form</button>
-            </div>
-          </div>
-        </form>
+<section aria-labelledby="demo-group-guidance-heading" class="result-group">
+<h3 class="group-heading" id="demo-group-guidance-heading">Practical guidance design</h3>
+<p class="group-intro">The prototype focuses on turning analysis into realistic next steps rather than producing generic health advice.</p>
+<div class="callout success-box tier-supporting">
+<span class="state-label">Useful output</span>
+<h4>How the guidance layer works</h4>
+<ul>
+<li>The response moves from quick read to deeper detail so the most useful information arrives first.</li>
+<li>Suggestions are shaped by context options such as low effort, sensory tolerance, grazing patterns, and vegetarian preferences.</li>
+<li>The tone is direct and usable, supporting comprehension without sounding clinical or performative.</li>
+</ul>
+</div>
+</section>
 
-        <section id="results" class="results" aria-labelledby="results-heading" hidden>
-          <h2 id="results-heading" tabindex="-1">Results</h2>
-          <p class="results-intro">This report moves from the short answer to the supporting detail, so the useful bits arrive before the lecture.</p>
-
-          <section class="result-group" aria-labelledby="group-summary-heading">
-            <h3 id="group-summary-heading" class="group-heading">Summary</h3>
-            <p class="group-intro">Start here for the top-line read and the immediate signals.</p>
-
-            <p id="status-message" class="callout info-box tier-primary" role="status" aria-live="polite"></p>
-
-            <div class="callout info-box tier-primary">
-              <span class="state-label">Top-line read</span>
-              <h4>Quick read</h4>
-              <p id="summary-text"></p>
-              <div id="quick-tags" class="pill-row" aria-label="Quick summary tags"></div>
-            </div>
-          </section>
-
-          <section class="result-group" aria-labelledby="group-analysis-heading">
-            <h3 id="group-analysis-heading" class="group-heading">Analysis</h3>
-            <p class="group-intro">This is the fuller breakdown of what looks solid and what looks a bit wobbly.</p>
-
-            <div class="callout tier-secondary">
-              <span class="state-label">Detailed pattern check</span>
-              <h4>Pattern scorecard</h4>
-              <ul id="scorecard-list" class="metric-list"></ul>
-            </div>
-
-            <div class="callout success-box tier-secondary">
-              <span class="state-label">Good signs picked up</span>
-              <h4>What is working well</h4>
-              <ul id="strengths-list"></ul>
-            </div>
-
-            <div class="callout warning-box tier-secondary">
-              <span class="state-label">Caution points picked up</span>
-              <h4>What needs attention first</h4>
-              <ul id="gaps-list"></ul>
-            </div>
-          </section>
-
-          <section class="result-group" aria-labelledby="group-guidance-heading">
-            <h3 id="group-guidance-heading" class="group-heading">Guidance</h3>
-            <p class="group-intro">This section explains why the patterns matter and what to do next.</p>
-
-            <div class="callout tier-supporting">
-              <span class="state-label">Why these patterns matter</span>
-              <h4>Why it matters and what Australian guidance points to</h4>
-              <div id="guidance-cards"></div>
-            </div>
-
-            <div class="callout tier-secondary">
-              <span class="state-label">Next-step ideas</span>
-              <h4>Practical upgrades</h4>
-              <ul id="suggestions-list"></ul>
-            </div>
-
-            <div class="callout tier-supporting">
-              <span class="state-label">Useful source material</span>
-              <h4>Relevant Australian resources</h4>
-              <div id="resources-list"></div>
-            </div>
-          </section>
-
-          <section class="result-group" aria-labelledby="group-meta-heading">
-            <h3 id="group-meta-heading" class="group-heading">Meta</h3>
-            <p class="group-intro">This is the transparency section: how much the tool recognised, and where it wants you to stay cautious.</p>
-
-            <div class="callout info-box tier-supporting">
-              <span class="state-label">How certain this looks</span>
-              <h4>Confidence and recognised foods</h4>
-              <p id="confidence-text"></p>
-              <ul id="recognized-foods" class="metric-list"></ul>
-            </div>
-
-            <div class="callout danger-box tier-supporting">
-              <span class="state-label">Read before over-trusting this</span>
-              <h4>Important note</h4>
-              <p id="disclaimer-text"></p>
-            </div>
-
-            <div class="button-row">
-              <button type="button" class="secondary" id="export-results">Export results as text</button>
-            </div>
-          </section>
-        </section>
-      </div>
-    </section>
-
-    <section class="content-section" aria-labelledby="how-it-works-heading">
-      <h2 id="how-it-works-heading">How this version works</h2>
-      <p class="results-intro">This section now uses the same grouped, tiered card language as the results so the page feels like one coherent system rather than two cousins who met at Christmas.</p>
-
-      <section class="result-group" aria-labelledby="how-group-summary-heading">
-        <h3 id="how-group-summary-heading" class="group-heading">Summary</h3>
-        <p class="group-intro">The tool starts by giving you the short version first, because not every moment of life is a suitable time for a nutritional dissertation.</p>
-
-        <div class="callout info-box tier-primary">
-          <span class="state-label">First read</span>
-          <h4>Fast pattern summary</h4>
-          <ul>
-            <li>It identifies likely food matches from your text and builds a rough picture of what showed up.</li>
-            <li>It surfaces the headline read first so you can get the gist without wading through every detail card.</li>
-            <li>It uses plain wording as well as colour so good signs, caution points, and uncertainty are named directly.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="result-group" aria-labelledby="how-group-analysis-heading">
-        <h3 id="how-group-analysis-heading" class="group-heading">Analysis</h3>
-        <p class="group-intro">Once the quick read is out of the way, the tool shows how it reached that conclusion.</p>
-
-        <div class="callout tier-secondary">
-          <span class="state-label">Pattern scoring</span>
-          <h4>What it checks</h4>
-          <ul>
-            <li>It scores likely protein, fibre, iron, calcium, fruit and vegetable coverage, and steadiness of energy support.</li>
-            <li>It separates good signs from caution points so the result does not blur into one giant beige nutrition paragraph.</li>
-            <li>It groups related findings together, which makes the long scroll easier to scan and easier to trust.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="result-group" aria-labelledby="how-group-guidance-heading">
-        <h3 id="how-group-guidance-heading" class="group-heading">Guidance</h3>
-        <p class="group-intro">After the analysis, it shifts from description into practical support.</p>
-
-        <div class="callout success-box tier-secondary">
-          <span class="state-label">Useful next steps</span>
-          <h4>Why the advice sounds this way</h4>
-          <ul>
-            <li>It injects short guidance summaries tied to Australian nutrition resources instead of just dumping a link and wandering off.</li>
-            <li>It offers practical upgrades that aim for realistic improvements, not fantasy-perfect meal plans.</li>
-            <li>It keeps the tone direct and usable, which is more helpful than sounding like a brochure in activewear.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="result-group" aria-labelledby="how-group-meta-heading">
-        <h3 id="how-group-meta-heading" class="group-heading">Meta</h3>
-        <p class="group-intro">This is the honesty layer. It tells you what the tool recognised and where it might be guessing.</p>
-
-        <div class="callout warning-box tier-supporting">
-          <span class="state-label">Keep your scepticism switched on</span>
-          <h4>Transparency and limits</h4>
-          <ul>
-            <li>It stays transparent about uncertainty rather than pretending your vague pizza memory came with a laboratory report.</li>
-            <li>It shows recognised foods and confidence cues so you can judge whether the output feels grounded.</li>
-            <li>It is still heuristic, not clinical. Its job is to be useful, not theatrical.</li>
-          </ul>
-        </div>
-      </section>
-    </section>
-
-    <section class="content-section" aria-labelledby="experiment-demonstrates-heading">
-      <h2 id="experiment-demonstrates-heading">What this experiment demonstrates</h2>
-      <p class="results-intro">This is the part where the tool explains its party trick and why it belongs on your experiments page.</p>
-
-      <section class="result-group" aria-labelledby="demo-group-accessibility-heading">
-        <h3 id="demo-group-accessibility-heading" class="group-heading">Accessible structure</h3>
-        <div class="callout info-box tier-secondary">
-          <span class="state-label">Interaction and clarity</span>
-          <h4>It demonstrates structured, screen-reader-friendly UI thinking</h4>
-          <ul>
-            <li>Grouped headings, predictable cards, and direct labels create a page that can be navigated in chunks rather than endured as one endless slab.</li>
-            <li>Meaning is carried by wording as well as colour, so positive findings, caution points, and uncertainty are named explicitly.</li>
-            <li>The control area, results area, and explanatory sections each have a distinct role in the page structure.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="result-group" aria-labelledby="demo-group-content-heading">
-        <h3 id="demo-group-content-heading" class="group-heading">Rules-based reasoning</h3>
-        <div class="callout tier-secondary">
-          <span class="state-label">Logic rather than magic</span>
-          <h4>It demonstrates a practical rules engine</h4>
-          <ul>
-            <li>The tool maps everyday food language to rough food matches and nutrient patterns.</li>
-            <li>It turns those patterns into a layered response: summary, analysis, guidance, and meta.</li>
-            <li>It shows how a lightweight browser tool can provide something more useful than a generic “eat balanced meals” shrug.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="result-group" aria-labelledby="demo-group-tone-heading">
-        <h3 id="demo-group-tone-heading" class="group-heading">Content design with personality</h3>
-        <div class="callout success-box tier-supporting">
-          <span class="state-label">Useful, not beige</span>
-          <h4>It demonstrates that practical tools do not have to sound dead inside</h4>
-          <ul>
-            <li>The language is plain, direct, and a bit alive, without tipping into nonsense.</li>
-            <li>It balances credibility with voice, which helps the experiment feel intentional rather than mechanically assembled.</li>
-            <li>It shows how your experimental site can carry the same personality as the rest of your work while still being functional.</li>
-          </ul>
-        </div>
-      </section>
-    </section>
-  </main>
-
-  <footer class="site-footer" role="contentinfo">
-    <p>Feed Me Properly is a work in progress.</p>
-    <p>It is for general nutrition guidance and practical next-step thinking, not diagnosis or personalised medical care.</p>
-  </footer>
-
-  <script>
+<section aria-labelledby="demo-group-trust-heading" class="result-group">
+<h3 class="group-heading" id="demo-group-trust-heading">Transparency and trust signals</h3>
+<p class="group-intro">The prototype makes its own limitations visible, which is a core part of the design rather than an afterthought.</p>
+<div class="callout warning-box tier-supporting">
+<span class="state-label">Trust and boundaries</span>
+<h4>How uncertainty is communicated</h4>
+<ul>
+<li>Recognised foods are surfaced so users can judge whether the interpretation is accurate.</li>
+<li>Confidence and caution notes are included to show where the system is making rough inferences.</li>
+<li>The tool is framed as guidance for everyday decision-making, not diagnosis or personalised medical advice.</li>
+</ul>
+</div>
+</section>
+</section>
+</main>
+<footer class="site-footer" role="contentinfo">
+<p>Feed Me Properly is a work in progress.</p>
+<p>It is for general nutrition guidance and practical next-step thinking, not diagnosis or personalised medical care.</p>
+</footer>
+<script>
     const FOOD_DB = [
       { keywords: ["greek yoghurt", "greek yogurt"], label: "Greek yoghurt", serve: "about 170 g", protein: 15, fibre: 0, iron: 0, calcium: 200, carbs: 7, fruitVegServes: 0, wholegrain: 0, vitaminC: 0, discretionary: 0, caffeine: 0, tags: ["protein", "calcium", "dairy"] },
       { keywords: ["yoghurt", "yogurt"], label: "Yoghurt", serve: "about 170 g", protein: 8, fibre: 0, iron: 0, calcium: 200, carbs: 12, fruitVegServes: 0, wholegrain: 0, vitaminC: 0, discretionary: 0, caffeine: 0, tags: ["protein", "calcium", "dairy"] },
@@ -932,6 +1038,7 @@
     const resultsSection = document.getElementById("results");
     const resultsHeading = document.getElementById("results-heading");
     const statusMessage = document.getElementById("status-message");
+    const srStatusAnnouncer = document.getElementById("sr-status-announcer");
     const summaryText = document.getElementById("summary-text");
     const quickTags = document.getElementById("quick-tags");
     const scorecardList = document.getElementById("scorecard-list");
@@ -947,6 +1054,67 @@
     const loadEntryButton = document.getElementById("load-entry");
     const sampleEntryButton = document.getElementById("sample-entry");
     const exportResultsButton = document.getElementById("export-results");
+    const resultAccordions = Array.from(document.querySelectorAll(".result-accordion"));
+
+    function setAccordionState(openIds = ["summary-panel"]) {
+      const ids = new Set(openIds);
+      resultAccordions.forEach(panel => {
+        panel.open = ids.has(panel.id);
+      });
+    }
+
+    let visualStatusTimeoutId = null;
+    let screenReaderStatusTimeoutId = null;
+
+    function updateStatusMessage(message) {
+      const trimmedMessage = typeof message === "string" ? message.trim() : "";
+
+      if (visualStatusTimeoutId) {
+        window.clearTimeout(visualStatusTimeoutId);
+        visualStatusTimeoutId = null;
+      }
+
+      if (screenReaderStatusTimeoutId) {
+        window.clearTimeout(screenReaderStatusTimeoutId);
+        screenReaderStatusTimeoutId = null;
+      }
+
+      statusMessage.textContent = "";
+      statusMessage.hidden = true;
+      srStatusAnnouncer.textContent = "";
+
+      if (!trimmedMessage) {
+        return;
+      }
+
+      statusMessage.hidden = false;
+      statusMessage.textContent = trimmedMessage;
+
+      screenReaderStatusTimeoutId = window.setTimeout(() => {
+        srStatusAnnouncer.textContent = "";
+        window.setTimeout(() => {
+          srStatusAnnouncer.textContent = trimmedMessage;
+        }, 80);
+      }, 80);
+
+      visualStatusTimeoutId = window.setTimeout(() => {
+        statusMessage.textContent = "";
+        statusMessage.hidden = true;
+      }, 3500);
+    }
+
+    function showResults(openIds = ["summary-panel"]) {
+      resultsSection.hidden = false;
+      setAccordionState(openIds);
+    }
+
+    function hideResults() {
+      resultsSection.hidden = true;
+      setAccordionState(["summary-panel"]);
+      updateStatusMessage("");
+    }
+
+    const announceStatus = updateStatusMessage;
 
     function getSelectedContexts() {
       return Array.from(document.querySelectorAll('input[name="context"]:checked')).map(input => input.value);
@@ -1260,7 +1428,8 @@
 
     function renderResults(foundFoods, totals, scorecard, analysis, goal, originalText, contexts) {
       summaryText.textContent = analysis.summary;
-      statusMessage.textContent = `Analysis ready. Goal: ${GOAL_CONFIG[goal].title}. Recognised ${foundFoods.length} food pattern${foundFoods.length === 1 ? "" : "s"}.`;
+      showResults(["summary-panel"]);
+      announceStatus(`Analysis ready. Goal: ${GOAL_CONFIG[goal].title}. Recognised ${foundFoods.length} food pattern${foundFoods.length === 1 ? "" : "s"}.`);
       renderPills(quickTags, analysis.tags.length ? analysis.tags : ["Rough guide only"]);
       renderScorecard(scorecardList, scorecard);
       renderSimpleList(strengthsList, analysis.strengths);
@@ -1272,7 +1441,6 @@
       renderResources(resourcesList, goal);
       disclaimerText.textContent = analysis.disclaimer;
 
-      resultsSection.hidden = false;
       resultsHeading.focus();
     }
 
@@ -1384,8 +1552,8 @@
     }
 
     function showEmptyState() {
-      resultsSection.hidden = false;
-      statusMessage.textContent = "Add some food information first, then run the guide again.";
+      showResults(["summary-panel"]);
+      announceStatus("Add some food information first, then run the guide again.");
       summaryText.textContent = "There is nothing to analyse yet because the meal entry is empty.";
       renderPills(quickTags, ["No input provided"]);
       renderScorecard(scorecardList, []);
@@ -1407,17 +1575,17 @@
         contexts: getSelectedContexts()
       };
       localStorage.setItem("feedMeProperlyEntry", JSON.stringify(payload));
-      statusMessage.textContent = "Entry saved on this device.";
-      resultsSection.hidden = false;
-      resultsHeading.focus();
+      hideResults();
+      announceStatus("Entry saved on this device.");
+      mealInput.focus();
     }
 
     function loadEntry() {
       const raw = localStorage.getItem("feedMeProperlyEntry");
       if (!raw) {
-        statusMessage.textContent = "No saved entry was found on this device yet.";
-        resultsSection.hidden = false;
-        resultsHeading.focus();
+        hideResults();
+        announceStatus("No saved entry was found on this device yet.");
+        mealInput.focus();
         return;
       }
       const payload = JSON.parse(raw);
@@ -1426,9 +1594,9 @@
       document.querySelectorAll('input[name="context"]').forEach(input => {
         input.checked = Array.isArray(payload.contexts) ? payload.contexts.includes(input.value) : false;
       });
-      statusMessage.textContent = "Saved entry loaded. Run the analysis when you are ready.";
-      resultsSection.hidden = false;
-      resultsHeading.focus();
+      hideResults();
+      announceStatus("Saved entry loaded. Run the analysis when you are ready.");
+      mealInput.focus();
     }
 
     function insertSample() {
@@ -1440,9 +1608,9 @@
 
     function exportResults() {
       if (resultsSection.hidden) {
-        statusMessage.textContent = "Run an analysis before exporting results.";
-        resultsSection.hidden = false;
-        resultsHeading.focus();
+        hideResults();
+        announceStatus("Run an analysis before exporting results.");
+        mealInput.focus();
         return;
       }
 
@@ -1493,14 +1661,33 @@
     form.addEventListener("submit", analyseEntry);
     form.addEventListener("reset", () => {
       window.setTimeout(() => {
-        resultsSection.hidden = true;
-        statusMessage.textContent = "";
+        hideResults();
       }, 0);
     });
     saveEntryButton.addEventListener("click", saveEntry);
     loadEntryButton.addEventListener("click", loadEntry);
     sampleEntryButton.addEventListener("click", insertSample);
     exportResultsButton.addEventListener("click", exportResults);
-  </script>
+  
+const toggleButton = document.getElementById("toggle-how");
+const howSection = document.getElementById("how-it-works-section");
+const trySection = document.getElementById("try-guide-section");
+
+toggleButton.addEventListener("click", () => {
+  const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+
+  if (isExpanded) {
+    toggleButton.setAttribute("aria-expanded", "false");
+    howSection.hidden = true;
+    trySection.hidden = false;
+  } else {
+    toggleButton.setAttribute("aria-expanded", "true");
+    howSection.hidden = false;
+    trySection.hidden = true;
+    howSection.focus?.();
+  }
+});
+</script>
+
 </body>
 </html>
