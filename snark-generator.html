@@ -390,66 +390,82 @@
 
     .dog-body {
       position: absolute;
-      left: 4rem;
-      bottom: 2.2rem;
-      width: 5.8rem;
+      left: 3.8rem;
+      bottom: 2.3rem;
+      width: 6.2rem;
       height: 3rem;
-      background: #f3c778;
+      background:
+        radial-gradient(ellipse 55% 40% at 30% 22%, rgba(255,255,255,0.32) 0%, transparent 70%),
+        radial-gradient(ellipse 70% 35% at 60% 88%, rgba(31,27,36,0.13) 0%, transparent 65%),
+        #f3c778;
       border: 0.18rem solid var(--heading);
-      border-radius: 52% 48% 42% 44%;
-      box-shadow: inset 0 0.08rem 0 rgba(255, 255, 255, 0.18);
+      border-radius: 36% 54% 62% 34% / 58% 46% 42% 64%;
       z-index: 2;
     }
 
     .dog-chest {
       position: absolute;
-      left: 4.05rem;
-      bottom: 2.18rem;
-      width: 1.18rem;
-      height: 2.05rem;
-      background: #f8e4b9;
+      left: 3.7rem;
+      bottom: 1.8rem;
+      width: 1.5rem;
+      height: 2.6rem;
+      /* Gradient follows the rounded form — lighter at top where it catches light */
+      background:
+        radial-gradient(ellipse 70% 50% at 38% 28%, rgba(255,255,255,0.38) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 40% at 55% 80%, rgba(31,27,36,0.1) 0%, transparent 60%),
+        #f8e4b9;
       border: 0.18rem solid var(--heading);
       border-right: 0;
-      border-radius: 62% 38% 46% 42%;
+      /* Overlap body on right so the seam border is hidden */
+      border-radius: 62% 36% 40% 52%;
       z-index: 3;
     }
 
     .dog-neck {
       position: absolute;
-      left: 3.72rem;
-      bottom: 3.48rem;
-      width: 0.82rem;
-      height: 1.18rem;
-      background: #f3c778;
+      left: 3.3rem;
+      bottom: 3.4rem;
+      width: 1.3rem;
+      height: 1.7rem;
+      /* Same body colour — blends flush with head and body */
+      background:
+        radial-gradient(ellipse 60% 55% at 38% 25%, rgba(255,255,255,0.28) 0%, transparent 60%),
+        #f3c778;
       border: 0.18rem solid var(--heading);
       border-bottom: 0;
-      border-radius: 50% 40% 0 0;
-      z-index: 1;
+      /* Flare at base to overlap body top, narrow at top to slide under head */
+      border-radius: 42% 36% 0 0;
+      z-index: 3;
     }
 
     .dog-tail {
       position: absolute;
-      left: 9.08rem;
-      bottom: 4.32rem;
-      width: 1.72rem;
-      height: 0.42rem;
+      left: 9.2rem;
+      bottom: 4.5rem;
+      width: 1.8rem;
+      height: 0.52rem;
       background: var(--heading);
-      border-radius: 999px;
-      transform-origin: 0.2rem center;
+      /* Thick at base (left), tapers to tip (right) */
+      border-radius: 0.26rem 999px 999px 0.1rem;
+      transform-origin: 0.26rem center;
       animation: tail-flick-dry 4.4s ease-in-out infinite;
       z-index: 1;
     }
 
     .dog-head {
       position: absolute;
-      left: 1.78rem;
-      bottom: 3.26rem;
-      width: 3.34rem;
-      height: 3.18rem;
-      background: #f3c778;
+      left: 1.5rem;
+      bottom: 3.5rem;
+      width: 3.4rem;
+      height: 3.2rem;
+      background:
+        /* highlight — light catches top-left of skull */
+        radial-gradient(ellipse 50% 44% at 35% 28%, rgba(255,255,255,0.36) 0%, transparent 65%),
+        /* chin shadow — underside darker */
+        radial-gradient(ellipse 65% 30% at 55% 92%, rgba(31,27,36,0.14) 0%, transparent 60%),
+        #f3c778;
       border: 0.18rem solid var(--heading);
       border-radius: 50% 50% 44% 44%;
-      box-shadow: inset 0 0.08rem 0 rgba(255, 255, 255, 0.18);
       transform-origin: 72% 78%;
       animation: head-tilt-dry 3.4s ease-in-out infinite;
       z-index: 4;
@@ -460,7 +476,8 @@
       top: -0.08rem;
       width: 1rem;
       height: 1.8rem;
-      background: #d69b4f;
+      /* Gradient runs top (attachment, lighter) to bottom (tip, darker) — follows form */
+      background: linear-gradient(175deg, #e0aa5e 0%, #b87d30 100%);
       border: 0.18rem solid var(--heading);
       border-radius: 0.8rem 0.8rem 1rem 1rem;
       transform-origin: top center;
@@ -486,6 +503,17 @@
       transform-origin: center;
     }
 
+    .dog-eye::after {
+      content: "";
+      position: absolute;
+      top: 0.06rem;
+      left: 0.08rem;
+      width: 0.12rem;
+      height: 0.1rem;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50%;
+    }
+
     .dog-eye--left { left: 0.95rem; }
     .dog-eye--right { right: 0.95rem; }
 
@@ -504,26 +532,40 @@
 
     .dog-snout {
       position: absolute;
-      left: 1.14rem;
-      bottom: 0.36rem;
-      width: 1.28rem;
-      height: 0.86rem;
-      background: #f8e4b9;
+      left: 0.96rem;
+      bottom: 0.28rem;
+      width: 1.52rem;
+      height: 1.02rem;
+      background:
+        radial-gradient(ellipse 55% 45% at 40% 30%, rgba(255,255,255,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 35% at 55% 85%, rgba(31,27,36,0.1) 0%, transparent 55%),
+        #f8e4b9;
       border: 0.18rem solid var(--heading);
-      border-radius: 42% 42% 56% 56%;
+      border-radius: 44% 44% 58% 58%;
       z-index: 2;
     }
 
     .dog-nose {
       position: absolute;
       left: 50%;
-      top: 0.08rem;
-      width: 0.42rem;
-      height: 0.22rem;
+      top: 0.1rem;
+      width: 0.52rem;
+      height: 0.28rem;
       background: var(--heading);
       border-radius: 48% 48% 72% 72%;
       transform: translateX(-50%);
       z-index: 3;
+    }
+
+    .dog-nose::after {
+      content: "";
+      position: absolute;
+      top: 0.04rem;
+      left: 0.1rem;
+      width: 0.14rem;
+      height: 0.08rem;
+      background: rgba(255,255,255,0.45);
+      border-radius: 50%;
     }
 
     .dog-mouth {
@@ -539,39 +581,121 @@
       z-index: 2;
     }
 
+    /* Upper leg — angled from shoulder/hip */
     .dog-leg {
       position: absolute;
-      bottom: 0.62rem;
+      bottom: 1.6rem;
       width: 0.82rem;
-      height: 1.72rem;
-      background: #f3c778;
+      height: 1.3rem;
+      background:
+        /* highlight on left edge — cylindrical form catching light */
+        linear-gradient(92deg, rgba(255,255,255,0.28) 0%, transparent 40%),
+        /* shadow on right edge */
+        linear-gradient(92deg, transparent 55%, rgba(31,27,36,0.12) 100%),
+        #f3c778;
       border: 0.18rem solid var(--heading);
-      border-radius: 0 0 0.48rem 0.48rem;
+      border-radius: 0.35rem 0.35rem 0.12rem 0.12rem;
+      z-index: 2;
     }
 
-    .dog-leg::after {
+    /* Joint knuckle — small circle where upper meets lower */
+    .dog-leg::before {
       content: "";
       position: absolute;
-      left: -0.14rem;
-      bottom: -0.18rem;
-      width: 1.02rem;
-      height: 0.24rem;
-      background: var(--heading);
-      border-radius: 999px;
+      bottom: -0.28rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0.46rem;
+      height: 0.46rem;
+      background: #e8b560;
+      border: 0.14rem solid var(--heading);
+      border-radius: 50%;
+      z-index: 3;
     }
 
     .dog-leg--front {
-      left: 4.85rem;
+      left: 4.9rem;
+      transform: rotate(6deg);
+      transform-origin: top center;
     }
 
     .dog-leg--back {
-      left: 8.1rem;
+      left: 8.3rem;
+      /* Back leg angles back from hip — Z-shape knee */
+      transform: rotate(-10deg);
+      transform-origin: top center;
+    }
+
+    /* Lower leg — below the joint */
+    .dog-leg-lower {
+      position: absolute;
+      bottom: -1.2rem;
+      left: -0.06rem;
+      width: 0.82rem;
+      height: 1.2rem;
+      background:
+        linear-gradient(92deg, rgba(255,255,255,0.24) 0%, transparent 38%),
+        linear-gradient(92deg, transparent 55%, rgba(31,27,36,0.1) 100%),
+        #f3c778;
+      border: 0.18rem solid var(--heading);
+      border-top: 0;
+      border-radius: 0 0 0.44rem 0.44rem;
+      /* Front lower leg kicks slightly forward at wrist */
+      transform: rotate(-8deg);
+      transform-origin: top center;
+    }
+
+    .dog-leg-lower--back {
+      /* Back lower leg kicks backward at hock */
+      transform: rotate(16deg);
+      transform-origin: top center;
+    }
+
+    /* Paw — on the lower leg */
+    .dog-leg-lower::after {
+      content: "";
+      position: absolute;
+      left: -0.16rem;
+      bottom: -0.18rem;
+      width: 1.06rem;
+      height: 0.26rem;
+      background: var(--heading);
+      border-radius: 999px;
     }
 
     .dog-level-label {
       margin-top: 0.75rem;
       margin-bottom: 0;
       font-weight: 700;
+    }
+
+    /* Per-level leg posture — stance reinforces snark attitude */
+
+    /* Dry: weight slightly back, upright and reserved */
+    .dog-figure[data-level="dry"] .dog-leg--front {
+      transform: rotate(2deg);
+      left: 5.0rem;
+    }
+    .dog-figure[data-level="dry"] .dog-leg--back {
+      transform: rotate(-14deg);
+    }
+
+    /* Full: chest out, front leg angled forward, engaged */
+    .dog-figure[data-level="full"] .dog-leg--front {
+      transform: rotate(12deg);
+      left: 4.7rem;
+    }
+    .dog-figure[data-level="full"] .dog-leg--back {
+      transform: rotate(-6deg);
+    }
+
+    /* Bites: hard wide-planted brace, both legs driven into ground */
+    .dog-figure[data-level="bites"] .dog-leg--front {
+      transform: rotate(18deg);
+      left: 4.5rem;
+    }
+    .dog-figure[data-level="bites"] .dog-leg--back {
+      transform: rotate(-20deg);
     }
 
     .dog-figure[data-level="dry"] {
@@ -619,7 +743,6 @@
 
     .dog-figure[data-level="full"] .dog-head {
       animation: head-tilt-full 0.82s ease-in-out infinite;
-      transform: rotate(-6deg) translateX(0.34rem) translateY(-0.06rem);
     }
 
     .dog-figure[data-level="full"] .dog-tail {
@@ -654,13 +777,12 @@
     }
 
     .dog-figure[data-level="bites"] {
-      animation: body-brace-bites 0.36s steps(1, end) infinite;
+      animation: body-brace-bites 0.36s cubic-bezier(0.2, 0, 0.4, 1) infinite;
       transform: translateY(-0.18rem) translateX(0.34rem) scale(1.08);
     }
 
     .dog-figure[data-level="bites"] .dog-head {
-      animation: head-lunge-bites 0.24s steps(1, end) infinite;
-      transform: rotate(-14deg) translateX(0.74rem) translateY(-0.12rem);
+      animation: head-lunge-bites 0.24s cubic-bezier(0.2, 0, 0.4, 1) infinite;
     }
 
     .dog-figure[data-level="bites"] .dog-tail {
@@ -848,7 +970,6 @@
       .dog-figure,
       .dog-figure * {
         animation: none !important;
-        transform: none !important;
       }
     }
   </style>
@@ -934,6 +1055,15 @@
           <div class="dog-stage dog-animation-stage">
             <div id="dog-figure" class="dog-figure" role="img" aria-labelledby="dog-level-label" aria-describedby="dog-description">
               <div class="dog-tail" aria-hidden="true"></div>
+              <div class="dog-body" aria-hidden="true"></div>
+              <div class="dog-chest" aria-hidden="true"></div>
+              <div class="dog-neck" aria-hidden="true"></div>
+              <div class="dog-leg dog-leg--front" aria-hidden="true">
+                <div class="dog-leg-lower" aria-hidden="true"></div>
+              </div>
+              <div class="dog-leg dog-leg--back" aria-hidden="true">
+                <div class="dog-leg-lower dog-leg-lower--back" aria-hidden="true"></div>
+              </div>
               <div class="dog-head">
                 <span class="dog-ear dog-ear--left" aria-hidden="true"></span>
                 <span class="dog-ear dog-ear--right" aria-hidden="true"></span>
@@ -946,11 +1076,6 @@
                   <span class="dog-mouth" aria-hidden="true"></span>
                 </span>
               </div>
-              <div class="dog-neck" aria-hidden="true"></div>
-              <div class="dog-body" aria-hidden="true"></div>
-              <div class="dog-chest" aria-hidden="true"></div>
-              <div class="dog-leg dog-leg--front" aria-hidden="true"></div>
-              <div class="dog-leg dog-leg--back" aria-hidden="true"></div>
             </div>
           </div>
           <p id="dog-level-label" class="dog-level-label"></p>
