@@ -510,6 +510,12 @@
       margin-bottom: var(--space-1);
     }
 
+    .jump-link {
+      display: inline-block;
+      margin-bottom: var(--space-3);
+      font-weight: 700;
+    }
+
     .pill {
       display: inline-block;
       padding: 0.42rem 0.72rem;
@@ -519,6 +525,281 @@
       font-size: 0.95rem;
       box-shadow: var(--shadow-quiet);
     }
+
+
+
+    .entry-mode-group {
+      display: grid;
+      gap: var(--space-2);
+      padding: var(--space-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .radio-group {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.45rem;
+      background: #ffffff;
+      box-shadow: var(--shadow-quiet);
+    }
+
+    .radio-option input {
+      margin-top: 0.2rem;
+    }
+
+    .radio-option strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--heading);
+    }
+
+    .entry-panel[hidden] {
+      display: none;
+    }
+
+    .structured-entry-layout {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .meal-block {
+      padding: var(--space-3);
+      border: 1px solid var(--border-subtle);
+      border-radius: calc(var(--radius) + 0.05rem);
+      background: #ffffff;
+      box-shadow: var(--shadow-quiet);
+    }
+
+    .meal-block legend {
+      padding: 0 0.35rem;
+    }
+
+    .meal-grid {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .meal-row-list {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .meal-row {
+      display: grid;
+      gap: 0.75rem;
+      padding: 1rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.45rem;
+      background: #fcfbfe;
+    }
+
+    .meal-row-meta {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: minmax(0, 2fr) minmax(11rem, 1fr);
+      align-items: end;
+    }
+
+    .meal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: var(--space-1);
+    }
+
+    .meal-helper {
+      margin-bottom: 0;
+    }
+
+    .meal-pattern-list {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .meal-pattern-card {
+      padding: 1rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.45rem;
+      background: #ffffff;
+    }
+
+    .meal-pattern-card h4 {
+      margin: 0 0 0.55rem;
+      color: var(--heading);
+      line-height: 1.2;
+    }
+
+    .meal-pattern-card p:last-child,
+    .meal-pattern-card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .meal-pattern-card ul {
+      padding-left: 1.2rem;
+    }
+
+    .meal-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0 0 var(--space-1);
+    }
+
+    .meal-chip {
+      display: inline-block;
+      padding: 0.32rem 0.6rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+
+    .profile-grid {
+      display: grid;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+
+    .score-visual-card {
+      padding: 1rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.45rem;
+      background: #ffffff;
+    }
+
+    .score-visual-card h4 {
+      margin: 0 0 0.45rem;
+      color: var(--heading);
+      line-height: 1.2;
+    }
+
+    .score-card-topline {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: baseline;
+      margin-bottom: 0.65rem;
+    }
+
+    .score-number {
+      font-weight: 700;
+      color: var(--heading);
+    }
+
+    .score-status-text {
+      font-weight: 700;
+      color: var(--heading);
+    }
+
+    .score-bar-shell {
+      height: 1rem;
+      border: 2px solid var(--border-strong);
+      border-radius: 999px;
+      background: #ffffff;
+      overflow: hidden;
+      margin-bottom: 0.65rem;
+    }
+
+    .score-bar-fill {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .score-bar-fill.status-strong {
+      background: var(--accent-hover);
+    }
+
+    .score-bar-fill.status-partial {
+      background: #5b3b99;
+    }
+
+    .score-bar-fill.status-light {
+      background: var(--border-strong);
+    }
+
+    .score-support-text {
+      margin-bottom: 0;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.45rem;
+      background: #ffffff;
+    }
+
+    .profile-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 48rem;
+    }
+
+    .profile-table caption {
+      padding: 1rem 1rem 0.5rem;
+      text-align: left;
+      font-weight: 700;
+      color: var(--heading);
+      caption-side: top;
+    }
+
+    .profile-table th,
+    .profile-table td {
+      padding: 0.9rem 1rem;
+      border-top: 1px solid var(--border-subtle);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .profile-table thead th {
+      border-top: none;
+      background: #ebe3f5;
+      color: var(--heading);
+      font-weight: 700;
+    }
+
+    .profile-table tbody th {
+      color: var(--heading);
+      font-weight: 700;
+      background: #fcfbfe;
+    }
+
+    .profile-table tbody tr:nth-child(even) td,
+    .profile-table tbody tr:nth-child(even) th {
+      background: #f8f4fc;
+    }
+
+    .profile-table .status-cell {
+      font-weight: 700;
+    }
+
+    .profile-table .status-strong-text {
+      color: var(--accent-hover);
+    }
+
+    .profile-table .status-partial-text {
+      color: #5b3b99;
+    }
+
+    .profile-table .status-light-text {
+      color: var(--heading);
+    }
+
 
     .visually-hidden {
       position: absolute;
@@ -546,6 +827,7 @@
       .site-main,
       .site-footer { width: min(100% - 1.5rem, 72rem); }
       .content-section { padding: var(--space-2); }
+      .meal-row-meta { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -581,11 +863,102 @@
 <h2 id="tool-heading">Try the guide</h2>
 <div class="tool-layout">
 <form id="nutrition-form" novalidate="">
-<div>
+<fieldset class="entry-mode-group">
+<legend>Entry style</legend>
+<p class="helper-text">Pick the format that matches your brain today. Quick entry keeps the original free-text field. Structured entry breaks the day into meals and rough amounts.</p>
+<div class="radio-group" role="radiogroup" aria-label="Entry style options">
+<label class="radio-option"><input checked="" name="entry-mode" type="radio" value="quick"/> <span><strong>Quick entry</strong><span>One text box for memory-dump mode.</span></span></label>
+<label class="radio-option"><input name="entry-mode" type="radio" value="structured"/> <span><strong>Structured entry</strong><span>Meals, snacks, rough amounts, and optional times for more intentional pattern checking.</span></span></label>
+</div>
+</fieldset>
+<div class="entry-panel" id="quick-entry-panel">
 <label for="meal-input">What did you eat, or what are you planning to eat?</label>
 <p class="helper-text" id="meal-help">Include brands, rough amounts, timing, supplements, or drinks if you know them. Vague is allowed. Chaos is allowed.</p>
 <textarea aria-describedby="meal-help" id="meal-input" name="meal-input">I had a latte, muesli with Greek yoghurt and blueberries, then later a piece of pizza with cheese and salami, and a peach in the afternoon.</textarea>
 </div>
+<section aria-labelledby="structured-entry-heading" class="entry-panel structured-entry-layout" hidden="" id="structured-entry-panel">
+<h3 id="structured-entry-heading">Structured meal entry</h3>
+<p class="helper-text">Each meal starts with one food row. Use the add item button if a meal had more than one part. Approximate amounts scale the analysis without demanding gram-level precision.</p>
+<div aria-atomic="true" aria-live="polite" class="visually-hidden" id="meal-builder-status"></div>
+<fieldset class="meal-block" data-meal-key="breakfast">
+<legend>Breakfast</legend>
+<div class="meal-grid">
+<div>
+<label for="meal-time-breakfast">Approximate time</label>
+<input autocomplete="off" id="meal-time-breakfast" name="meal-time-breakfast" placeholder="Optional, for example 7:30 am" type="text"/>
+</div>
+<div class="meal-row-list" data-meal-items="breakfast"></div>
+<div class="meal-actions">
+<button class="secondary add-meal-item" data-meal-key="breakfast" type="button">Add another breakfast item</button>
+</div>
+</div>
+</fieldset>
+<fieldset class="meal-block" data-meal-key="morning-snack">
+<legend>Morning snack</legend>
+<div class="meal-grid">
+<div>
+<label for="meal-time-morning-snack">Approximate time</label>
+<input autocomplete="off" id="meal-time-morning-snack" name="meal-time-morning-snack" placeholder="Optional, for example 10:30 am" type="text"/>
+</div>
+<div class="meal-row-list" data-meal-items="morning-snack"></div>
+<div class="meal-actions">
+<button class="secondary add-meal-item" data-meal-key="morning-snack" type="button">Add another morning snack item</button>
+</div>
+</div>
+</fieldset>
+<fieldset class="meal-block" data-meal-key="lunch">
+<legend>Lunch</legend>
+<div class="meal-grid">
+<div>
+<label for="meal-time-lunch">Approximate time</label>
+<input autocomplete="off" id="meal-time-lunch" name="meal-time-lunch" placeholder="Optional, for example 1:00 pm" type="text"/>
+</div>
+<div class="meal-row-list" data-meal-items="lunch"></div>
+<div class="meal-actions">
+<button class="secondary add-meal-item" data-meal-key="lunch" type="button">Add another lunch item</button>
+</div>
+</div>
+</fieldset>
+<fieldset class="meal-block" data-meal-key="afternoon-snack">
+<legend>Afternoon snack</legend>
+<div class="meal-grid">
+<div>
+<label for="meal-time-afternoon-snack">Approximate time</label>
+<input autocomplete="off" id="meal-time-afternoon-snack" name="meal-time-afternoon-snack" placeholder="Optional, for example 3:30 pm" type="text"/>
+</div>
+<div class="meal-row-list" data-meal-items="afternoon-snack"></div>
+<div class="meal-actions">
+<button class="secondary add-meal-item" data-meal-key="afternoon-snack" type="button">Add another afternoon snack item</button>
+</div>
+</div>
+</fieldset>
+<fieldset class="meal-block" data-meal-key="dinner">
+<legend>Dinner</legend>
+<div class="meal-grid">
+<div>
+<label for="meal-time-dinner">Approximate time</label>
+<input autocomplete="off" id="meal-time-dinner" name="meal-time-dinner" placeholder="Optional, for example 7:00 pm" type="text"/>
+</div>
+<div class="meal-row-list" data-meal-items="dinner"></div>
+<div class="meal-actions">
+<button class="secondary add-meal-item" data-meal-key="dinner" type="button">Add another dinner item</button>
+</div>
+</div>
+</fieldset>
+<fieldset class="meal-block" data-meal-key="evening-snack">
+<legend>Evening snack</legend>
+<div class="meal-grid">
+<div>
+<label for="meal-time-evening-snack">Approximate time</label>
+<input autocomplete="off" id="meal-time-evening-snack" name="meal-time-evening-snack" placeholder="Optional, for example 9:00 pm" type="text"/>
+</div>
+<div class="meal-row-list" data-meal-items="evening-snack"></div>
+<div class="meal-actions">
+<button class="secondary add-meal-item" data-meal-key="evening-snack" type="button">Add another evening snack item</button>
+</div>
+</div>
+</fieldset>
+</section>
 <div>
 <label for="goal-select">Main goal</label>
 <select id="goal-select" name="goal-select">
@@ -622,6 +995,7 @@
 <section aria-labelledby="results-heading" class="results" hidden="" id="results">
 <h2 id="results-heading" tabindex="-1">Results</h2>
 <p class="results-intro">This report moves from the short answer to the supporting detail, so the useful bits arrive before the lecture.</p>
+<a class="jump-link" href="#patterns-summary">Jump to patterns</a>
 <p aria-atomic="true" aria-live="polite" class="callout info-box tier-primary results-status" hidden="" id="status-message" role="status"></p>
 <details class="result-accordion" id="summary-panel" open="">
 <summary class="accordion-summary">
@@ -652,10 +1026,31 @@
 </div>
 </summary>
 <div aria-labelledby="group-analysis-heading" class="accordion-panel">
-<div class="callout tier-secondary">
-<span class="state-label">Detailed pattern check</span>
-<h3>Pattern scorecard</h3>
-<ul class="metric-list" id="scorecard-list"></ul>
+<div class="callout info-box tier-secondary" id="patterns-summary">
+<span class="state-label">Snapshot profile</span>
+<h3>Nutrition profile at a glance</h3>
+<div class="profile-grid" id="score-visual-list"></div>
+<div class="table-scroll">
+<table class="profile-table" id="score-breakdown-table">
+<caption>Pattern breakdown with estimated amount, target cue, score, status, and meaning</caption>
+<thead>
+<tr>
+<th scope="col">Pattern area</th>
+<th scope="col">Estimated amount</th>
+<th scope="col">Target cue</th>
+<th scope="col">Score</th>
+<th scope="col">Status</th>
+<th scope="col">What it means</th>
+</tr>
+</thead>
+<tbody id="score-breakdown-body"></tbody>
+</table>
+</div>
+</div>
+<div class="callout info-box tier-secondary">
+<span class="state-label">Meal-by-meal read</span>
+<h3>How each meal is pulling its weight</h3>
+<div class="meal-pattern-list" id="meal-patterns-list"></div>
 </div>
 <div class="callout success-box tier-secondary">
 <span class="state-label">Good signs picked up</span>
@@ -1035,13 +1430,19 @@ How this version works
     const form = document.getElementById("nutrition-form");
     const mealInput = document.getElementById("meal-input");
     const goalSelect = document.getElementById("goal-select");
+    const entryModeInputs = Array.from(document.querySelectorAll('input[name="entry-mode"]'));
+    const quickEntryPanel = document.getElementById("quick-entry-panel");
+    const structuredEntryPanel = document.getElementById("structured-entry-panel");
+    const mealBuilderStatus = document.getElementById("meal-builder-status");
     const resultsSection = document.getElementById("results");
     const resultsHeading = document.getElementById("results-heading");
     const statusMessage = document.getElementById("status-message");
     const srStatusAnnouncer = document.getElementById("sr-status-announcer");
     const summaryText = document.getElementById("summary-text");
     const quickTags = document.getElementById("quick-tags");
-    const scorecardList = document.getElementById("scorecard-list");
+    const scoreVisualList = document.getElementById("score-visual-list");
+    const scoreBreakdownBody = document.getElementById("score-breakdown-body");
+    const mealPatternsList = document.getElementById("meal-patterns-list");
     const strengthsList = document.getElementById("strengths-list");
     const gapsList = document.getElementById("gaps-list");
     const guidanceCards = document.getElementById("guidance-cards");
@@ -1055,12 +1456,178 @@ How this version works
     const sampleEntryButton = document.getElementById("sample-entry");
     const exportResultsButton = document.getElementById("export-results");
     const resultAccordions = Array.from(document.querySelectorAll(".result-accordion"));
+    const addMealItemButtons = Array.from(document.querySelectorAll(".add-meal-item"));
+
+    const MEAL_DEFINITIONS = [
+      { key: "breakfast", label: "Breakfast" },
+      { key: "morning-snack", label: "Morning snack" },
+      { key: "lunch", label: "Lunch" },
+      { key: "afternoon-snack", label: "Afternoon snack" },
+      { key: "dinner", label: "Dinner" },
+      { key: "evening-snack", label: "Evening snack" }
+    ];
 
     function setAccordionState(openIds = ["summary-panel"]) {
       const ids = new Set(openIds);
       resultAccordions.forEach(panel => {
         panel.open = ids.has(panel.id);
       });
+    }
+
+
+    function getSelectedEntryMode() {
+      const selected = entryModeInputs.find(input => input.checked);
+      return selected ? selected.value : "quick";
+    }
+
+    function setEntryMode(mode, shouldAnnounce = false) {
+      const useStructured = mode === "structured";
+      quickEntryPanel.hidden = useStructured;
+      structuredEntryPanel.hidden = !useStructured;
+
+      if (shouldAnnounce) {
+        announceStatus(useStructured ? "Structured entry is active. Meals and approximate amounts are now available." : "Quick entry is active. One free-text field is ready.");
+      }
+    }
+
+    function announceMealBuilder(message) {
+      if (!message) return;
+      mealBuilderStatus.textContent = "";
+      window.setTimeout(() => {
+        mealBuilderStatus.textContent = message;
+      }, 60);
+    }
+
+    function createMealRow(mealKey, rowIndex, foodValue = "", amountValue = "medium") {
+      const row = document.createElement("div");
+      row.className = "meal-row";
+      row.dataset.rowIndex = String(rowIndex);
+      row.innerHTML = `
+        <div>
+          <label for="${mealKey}-food-${rowIndex}">Food or drink item</label>
+          <input autocomplete="off" id="${mealKey}-food-${rowIndex}" name="${mealKey}-food-${rowIndex}" placeholder="For example Greek yoghurt, latte, wrap with chicken" type="text" value="${foodValue.replace(/"/g, '&quot;')}" />
+        </div>
+        <div class="meal-row-meta">
+          <div>
+            <label for="${mealKey}-amount-${rowIndex}">Approximate amount</label>
+            <select id="${mealKey}-amount-${rowIndex}" name="${mealKey}-amount-${rowIndex}">
+              <option value="small" ${amountValue === "small" ? "selected" : ""}>Small, taste, or half serve</option>
+              <option value="medium" ${amountValue === "medium" ? "selected" : ""}>Medium or standard serve</option>
+              <option value="large" ${amountValue === "large" ? "selected" : ""}>Large or bigger serve</option>
+              <option value="unknown" ${amountValue === "unknown" ? "selected" : ""}>Not sure</option>
+            </select>
+          </div>
+          <div class="meal-actions">
+            <button class="secondary remove-meal-item" type="button">Remove this item</button>
+          </div>
+        </div>
+      `;
+      const removeButton = row.querySelector(".remove-meal-item");
+      removeButton.addEventListener("click", () => {
+        const list = row.closest(".meal-row-list");
+        const mealName = getMealLabel(mealKey);
+        if (list && list.children.length === 1) {
+          row.querySelector('input[type="text"]').value = "";
+          row.querySelector("select").value = "medium";
+          row.querySelector('input[type="text"]').focus();
+          announceMealBuilder(`${mealName} still needs at least one row, so the item was cleared instead of removed.`);
+          return;
+        }
+        row.remove();
+        reindexMealRows(mealKey);
+        announceMealBuilder(`Removed one item from ${mealName}.`);
+      });
+      return row;
+    }
+
+    function getMealLabel(mealKey) {
+      const meal = MEAL_DEFINITIONS.find(item => item.key === mealKey);
+      return meal ? meal.label : mealKey;
+    }
+
+    function reindexMealRows(mealKey) {
+      const list = document.querySelector(`[data-meal-items="${mealKey}"]`);
+      if (!list) return;
+      Array.from(list.children).forEach((row, index) => {
+        row.dataset.rowIndex = String(index);
+        const input = row.querySelector('input[type="text"]');
+        const select = row.querySelector("select");
+        const labelNodes = row.querySelectorAll("label");
+        if (input) {
+          input.id = `${mealKey}-food-${index}`;
+          input.name = `${mealKey}-food-${index}`;
+        }
+        if (select) {
+          select.id = `${mealKey}-amount-${index}`;
+          select.name = `${mealKey}-amount-${index}`;
+        }
+        if (labelNodes[0] && input) labelNodes[0].setAttribute("for", input.id);
+        if (labelNodes[1] && select) labelNodes[1].setAttribute("for", select.id);
+      });
+    }
+
+    function addMealRow(mealKey, foodValue = "", amountValue = "medium", shouldFocus = false) {
+      const list = document.querySelector(`[data-meal-items="${mealKey}"]`);
+      if (!list) return null;
+      const row = createMealRow(mealKey, list.children.length, foodValue, amountValue);
+      list.appendChild(row);
+      if (shouldFocus) {
+        const input = row.querySelector('input[type="text"]');
+        if (input) input.focus();
+      }
+      return row;
+    }
+
+    function ensureInitialMealRows() {
+      MEAL_DEFINITIONS.forEach(meal => {
+        const list = document.querySelector(`[data-meal-items="${meal.key}"]`);
+        if (list && !list.children.length) {
+          addMealRow(meal.key);
+        }
+      });
+    }
+
+    function getPortionMultiplier(size) {
+      if (size === "small") return 0.5;
+      if (size === "large") return 1.5;
+      return 1;
+    }
+
+    function formatAmountLabel(size) {
+      if (size === "small") return "small";
+      if (size === "large") return "large";
+      if (size === "unknown") return "amount not specified";
+      return "standard";
+    }
+
+    function collectStructuredMeals() {
+      return MEAL_DEFINITIONS.map(meal => {
+        const timeInput = document.getElementById(`meal-time-${meal.key}`);
+        const itemRows = Array.from(document.querySelectorAll(`[data-meal-items="${meal.key}"] .meal-row`));
+        const items = itemRows.map(row => {
+          const textInput = row.querySelector('input[type="text"]');
+          const amountSelect = row.querySelector("select");
+          return {
+            text: textInput ? textInput.value.trim() : "",
+            amount: amountSelect ? amountSelect.value : "medium"
+          };
+        }).filter(item => item.text);
+
+        return {
+          key: meal.key,
+          label: meal.label,
+          time: timeInput ? timeInput.value.trim() : "",
+          items
+        };
+      });
+    }
+
+    function buildQuickTextFromMeals(meals) {
+      return meals.filter(meal => meal.items.length).map(meal => {
+        const timeBit = meal.time ? ` at ${meal.time}` : "";
+        const itemsBit = meal.items.map(item => `${formatAmountLabel(item.amount)} ${item.text}`).join(", ");
+        return `${meal.label}${timeBit}: ${itemsBit}`;
+      }).join(". ");
     }
 
     let visualStatusTimeoutId = null;
@@ -1141,18 +1708,19 @@ How this version works
 
     function calculateTotals(foundFoods) {
       return foundFoods.reduce((totals, food) => {
-        totals.protein += food.protein || 0;
-        totals.fibre += food.fibre || 0;
-        totals.iron += food.iron || 0;
-        totals.calcium += food.calcium || 0;
-        totals.carbs += food.carbs || 0;
-        totals.fruitVegServes += food.fruitVegServes || 0;
-        totals.wholegrain += food.wholegrain || 0;
-        totals.vitaminC += food.vitaminC || 0;
-        totals.discretionary += food.discretionary || 0;
-        totals.caffeine += food.caffeine || 0;
-        totals.hydration += food.hydration || 0;
-        totals.supplement += food.supplement || 0;
+        const multiplier = food.multiplier || 1;
+        totals.protein += (food.protein || 0) * multiplier;
+        totals.fibre += (food.fibre || 0) * multiplier;
+        totals.iron += (food.iron || 0) * multiplier;
+        totals.calcium += (food.calcium || 0) * multiplier;
+        totals.carbs += (food.carbs || 0) * multiplier;
+        totals.fruitVegServes += (food.fruitVegServes || 0) * multiplier;
+        totals.wholegrain += (food.wholegrain || 0) * multiplier;
+        totals.vitaminC += (food.vitaminC || 0) * multiplier;
+        totals.discretionary += (food.discretionary || 0) * multiplier;
+        totals.caffeine += (food.caffeine || 0) * multiplier;
+        totals.hydration += (food.hydration || 0) * multiplier;
+        totals.supplement += (food.supplement || 0) * multiplier;
         return totals;
       }, {
         protein: 0,
@@ -1264,24 +1832,134 @@ How this version works
       return Array.from(needed).filter(key => GUIDANCE_MAP[key]);
     }
 
+
+
+    function detectFoodsFromStructuredMeals(meals) {
+      const allFoundFoods = [];
+      const mealAnalyses = [];
+
+      meals.forEach(meal => {
+        const mealFoundFoods = [];
+        meal.items.forEach(item => {
+          const detected = detectFoods(normaliseText(item.text));
+          detected.forEach(food => {
+            mealFoundFoods.push({
+              ...food,
+              sourceText: item.text,
+              amount: item.amount,
+              multiplier: getPortionMultiplier(item.amount)
+            });
+          });
+        });
+
+        const mealTotals = calculateTotals(mealFoundFoods);
+        mealAnalyses.push({
+          ...meal,
+          foundFoods: mealFoundFoods,
+          totals: mealTotals,
+          scorecard: buildScorecard(mealTotals)
+        });
+        allFoundFoods.push(...mealFoundFoods);
+      });
+
+      return { allFoundFoods, mealAnalyses };
+    }
+
+    function buildMealNarratives(mealAnalyses) {
+      return mealAnalyses.filter(meal => meal.items.length).map(meal => {
+        const notes = [];
+        const tags = [];
+        const proteinStrong = meal.totals.protein >= 20;
+        const proteinPartial = meal.totals.protein >= 10;
+        const fibreStrong = meal.totals.fibre >= 8;
+        const produceStrong = meal.totals.fruitVegServes >= 1;
+
+        if (meal.totals.caffeine >= 1 && meal.totals.protein < 10) {
+          notes.push("Caffeine showed up more clearly than food structure here, so this meal may feel brisk and then annoyingly flimsy.");
+          tags.push("Caffeine-heavy start");
+        }
+        if (proteinStrong) {
+          notes.push("This meal has a decent protein anchor.");
+          tags.push("Protein anchored");
+        } else if (proteinPartial) {
+          notes.push("There is some protein here, but it may not hold you for long.");
+          tags.push("Protein moderate");
+        } else {
+          notes.push("A strong protein anchor is not obvious in this meal.");
+          tags.push("Protein light");
+        }
+
+        if (fibreStrong) {
+          notes.push("Fibre support looks useful.");
+          tags.push("Fibre useful");
+        } else if (meal.totals.fibre >= 4) {
+          notes.push("There is some fibre, though the meal could still use more staying power.");
+        } else {
+          notes.push("Fibre looks light unless portions were larger than entered.");
+        }
+
+        if (produceStrong) {
+          notes.push("There is at least one fruit, vegetable, or legume signal here.");
+          tags.push("Plant food included");
+        } else {
+          notes.push("A plant food is not clearly doing any work in this meal.");
+        }
+
+        if (meal.totals.protein >= 10 && meal.totals.carbs >= 15) {
+          notes.push("Protein and carbohydrate are showing up together, which usually gives steadier energy.");
+          tags.push("Energy steadier");
+        }
+
+        if (!meal.foundFoods.length) {
+          notes.length = 0;
+          notes.push("No recognised foods were picked up from this meal yet, so the read here stays cautious.");
+          tags.length = 0;
+          tags.push("Not enough recognised data");
+        }
+
+        return { ...meal, notes, tags };
+      });
+    }
     function analyseEntry(event) {
       event.preventDefault();
-      const originalText = mealInput.value.trim();
       const goal = goalSelect.value;
       const contexts = getSelectedContexts();
+      const entryMode = getSelectedEntryMode();
 
-      if (!originalText) {
-        showEmptyState();
-        return;
+      let originalText = "";
+      let foundFoods = [];
+      let totals = null;
+      let scorecard = [];
+      let mealNarratives = [];
+
+      if (entryMode === "structured") {
+        const meals = collectStructuredMeals();
+        originalText = buildQuickTextFromMeals(meals).trim();
+
+        if (!originalText) {
+          showEmptyState(entryMode);
+          return;
+        }
+
+        const structuredAnalysis = detectFoodsFromStructuredMeals(meals);
+        foundFoods = structuredAnalysis.allFoundFoods;
+        totals = calculateTotals(foundFoods);
+        scorecard = buildScorecard(totals);
+        mealNarratives = buildMealNarratives(structuredAnalysis.mealAnalyses);
+      } else {
+        originalText = mealInput.value.trim();
+        if (!originalText) {
+          showEmptyState(entryMode);
+          return;
+        }
+        const normalised = normaliseText(originalText);
+        foundFoods = detectFoods(normalised);
+        totals = calculateTotals(foundFoods);
+        scorecard = buildScorecard(totals);
       }
 
-      const normalised = normaliseText(originalText);
-      const foundFoods = detectFoods(normalised);
-      const totals = calculateTotals(foundFoods);
-      const scorecard = buildScorecard(totals);
-      const analysis = buildNarrative(foundFoods, totals, scorecard, goal, contexts, normalised);
-
-      renderResults(foundFoods, totals, scorecard, analysis, goal, originalText, contexts);
+      const analysis = buildNarrative(foundFoods, totals, scorecard, goal, contexts, normaliseText(originalText));
+      renderResults(foundFoods, totals, scorecard, analysis, goal, originalText, contexts, mealNarratives, entryMode);
     }
 
     function buildNarrative(foundFoods, totals, scorecard, goal, contexts, text) {
@@ -1426,12 +2104,14 @@ How this version works
       return { strengths, gaps, suggestions, summary, disclaimer, tags, guidanceNeeds };
     }
 
-    function renderResults(foundFoods, totals, scorecard, analysis, goal, originalText, contexts) {
+    function renderResults(foundFoods, totals, scorecard, analysis, goal, originalText, contexts, mealNarratives = [], entryMode = "quick") {
       summaryText.textContent = analysis.summary;
       showResults(["summary-panel"]);
-      announceStatus(`Analysis ready. Goal: ${GOAL_CONFIG[goal].title}. Recognised ${foundFoods.length} food pattern${foundFoods.length === 1 ? "" : "s"}.`);
+      announceStatus(`Analysis ready. Goal: ${GOAL_CONFIG[goal].title}. Recognised ${foundFoods.length} food pattern${foundFoods.length === 1 ? "" : "s"}. ${entryMode === "structured" ? "Meal-by-meal insights are included." : "Quick entry mode was used."}`);
       renderPills(quickTags, analysis.tags.length ? analysis.tags : ["Rough guide only"]);
-      renderScorecard(scorecardList, scorecard);
+      renderScoreVisuals(scoreVisualList, scorecard);
+      renderScoreTable(scoreBreakdownBody, scorecard);
+      renderMealPatterns(mealPatternsList, mealNarratives, entryMode);
       renderSimpleList(strengthsList, analysis.strengths);
       renderSimpleList(gapsList, analysis.gaps);
       renderGuidance(guidanceCards, analysis.guidanceNeeds);
@@ -1454,27 +2134,160 @@ How this version works
       });
     }
 
-    function renderScorecard(container, items) {
-      container.innerHTML = "";
+    function getScoreStatusLabel(status) {
       const statusMap = {
-        strong: "Good sign: strong",
-        partial: "Mixed signal: building but not there yet",
-        light: "Needs attention: light"
+        strong: "Strong",
+        partial: "Building",
+        light: "Needs attention"
       };
+      return statusMap[status] || status;
+    }
 
+    function calculateMetricScore(item) {
+      if (item.key === "energyPair") {
+        return item.amount >= 1 ? 100 : 0;
+      }
+
+      const numericTargetMatch = String(item.target).match(/\d+(?:\.\d+)?/);
+      const numericTarget = numericTargetMatch ? Number(numericTargetMatch[0]) : 0;
+      if (!numericTarget) return 0;
+      return Math.max(0, Math.min(100, Math.round((Number(item.amount) / numericTarget) * 100)));
+    }
+
+    function buildVisualProfileItems(items) {
+      const metricItems = items.map(item => ({
+        ...item,
+        score: calculateMetricScore(item)
+      }));
+
+      const overallScore = metricItems.length
+        ? Math.round(metricItems.reduce((sum, item) => sum + item.score, 0) / metricItems.length)
+        : 0;
+
+      const overallStatus = overallScore >= 80 ? "strong" : overallScore >= 50 ? "partial" : "light";
+      const overallNote = overallScore >= 80
+        ? "The day has a reasonably solid backbone across the tracked patterns."
+        : overallScore >= 50
+          ? "The day is building, but a few patterns still need shoring up."
+          : "The overall pattern is patchy enough that one or two practical fixes would help quickly.";
+
+      return [
+        {
+          key: "overall",
+          title: "Overall balance",
+          amount: `${overallScore} out of 100`,
+          target: "Average across the tracked nutrition patterns",
+          score: overallScore,
+          status: overallStatus,
+          note: overallNote
+        },
+        ...metricItems
+      ];
+    }
+
+    function renderScoreVisuals(container, items) {
+      container.innerHTML = "";
+      if (!items.length) {
+        const card = document.createElement("section");
+        card.className = "score-visual-card";
+        const heading = document.createElement("h4");
+        heading.textContent = "No score profile yet";
+        const text = document.createElement("p");
+        text.textContent = "Run an analysis to generate the profile bars and score summary.";
+        card.appendChild(heading);
+        card.appendChild(text);
+        container.appendChild(card);
+        return;
+      }
+      const visualItems = buildVisualProfileItems(items);
+
+      visualItems.forEach(item => {
+        const card = document.createElement("section");
+        card.className = "score-visual-card";
+
+        const heading = document.createElement("h4");
+        heading.textContent = item.title;
+
+        const topline = document.createElement("div");
+        topline.className = "score-card-topline";
+
+        const number = document.createElement("p");
+        number.className = "score-number";
+        number.textContent = item.key === "overall"
+          ? item.amount
+          : `${item.score} out of 100`;
+
+        const status = document.createElement("p");
+        status.className = "score-status-text";
+        status.textContent = getScoreStatusLabel(item.status);
+
+        topline.appendChild(number);
+        topline.appendChild(status);
+
+        const bar = document.createElement("div");
+        bar.className = "score-bar-shell";
+        bar.setAttribute("role", "img");
+        bar.setAttribute("aria-label", `${item.title}: ${item.key === "overall" ? item.amount : `${item.score} out of 100`}. Status: ${getScoreStatusLabel(item.status)}.`);
+
+        const fill = document.createElement("span");
+        fill.className = `score-bar-fill status-${item.status}`;
+        fill.style.width = `${item.score}%`;
+        fill.setAttribute("aria-hidden", "true");
+        bar.appendChild(fill);
+
+        const support = document.createElement("p");
+        support.className = "score-support-text";
+        support.textContent = item.note;
+
+        card.appendChild(heading);
+        card.appendChild(topline);
+        card.appendChild(bar);
+        card.appendChild(support);
+        container.appendChild(card);
+      });
+    }
+
+    function renderScoreTable(container, items) {
+      container.innerHTML = "";
+      if (!items.length) {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = 6;
+        cell.textContent = "Run an analysis to populate the pattern breakdown table.";
+        row.appendChild(cell);
+        container.appendChild(row);
+        return;
+      }
       items.forEach(item => {
-        const li = document.createElement("li");
-        const title = document.createElement("span");
-        title.className = "metric-title";
-        title.textContent = `${item.title}: ${statusMap[item.status] || item.status}`;
-        const amount = document.createElement("p");
-        amount.textContent = `Estimated contribution: ${item.amount}. Target cue: ${item.target}.`;
-        const note = document.createElement("p");
-        note.textContent = item.note;
-        li.appendChild(title);
-        li.appendChild(amount);
-        li.appendChild(note);
-        container.appendChild(li);
+        const row = document.createElement("tr");
+
+        const name = document.createElement("th");
+        name.scope = "row";
+        name.textContent = item.title;
+
+        const amount = document.createElement("td");
+        amount.textContent = `${item.amount}`;
+
+        const target = document.createElement("td");
+        target.textContent = item.target;
+
+        const score = document.createElement("td");
+        score.textContent = `${calculateMetricScore(item)} out of 100`;
+
+        const status = document.createElement("td");
+        status.className = `status-cell status-${item.status}-text`;
+        status.textContent = getScoreStatusLabel(item.status);
+
+        const meaning = document.createElement("td");
+        meaning.textContent = item.note;
+
+        row.appendChild(name);
+        row.appendChild(amount);
+        row.appendChild(target);
+        row.appendChild(score);
+        row.appendChild(status);
+        row.appendChild(meaning);
+        container.appendChild(row);
       });
     }
 
@@ -1509,6 +2322,63 @@ How this version works
       });
     }
 
+
+
+    function renderMealPatterns(container, mealNarratives, entryMode) {
+      container.innerHTML = "";
+
+      if (entryMode !== "structured") {
+        const card = document.createElement("section");
+        card.className = "meal-pattern-card";
+        const heading = document.createElement("h4");
+        heading.textContent = "Meal-by-meal insights are waiting in structured mode";
+        const description = document.createElement("p");
+        description.textContent = "Quick entry still works, but structured mode unlocks per-meal analysis, portion scaling, and more specific energy-pattern guidance.";
+        card.appendChild(heading);
+        card.appendChild(description);
+        container.appendChild(card);
+        return;
+      }
+
+      const usableMeals = mealNarratives.filter(meal => meal.items.length);
+      if (!usableMeals.length) {
+        const card = document.createElement("section");
+        card.className = "meal-pattern-card";
+        const heading = document.createElement("h4");
+        heading.textContent = "No meals were entered yet";
+        const description = document.createElement("p");
+        description.textContent = "Add at least one meal item in structured mode to unlock meal-by-meal feedback.";
+        card.appendChild(heading);
+        card.appendChild(description);
+        container.appendChild(card);
+        return;
+      }
+
+      usableMeals.forEach(meal => {
+        const card = document.createElement("section");
+        card.className = "meal-pattern-card";
+        const heading = document.createElement("h4");
+        heading.textContent = meal.time ? `${meal.label} at ${meal.time}` : meal.label;
+        const chipRow = document.createElement("div");
+        chipRow.className = "meal-chip-row";
+        meal.tags.slice(0, 4).forEach(tag => {
+          const chip = document.createElement("span");
+          chip.className = "meal-chip";
+          chip.textContent = tag;
+          chipRow.appendChild(chip);
+        });
+        const detailList = document.createElement("ul");
+        meal.notes.forEach(note => {
+          const li = document.createElement("li");
+          li.textContent = note;
+          detailList.appendChild(li);
+        });
+        card.appendChild(heading);
+        if (chipRow.children.length) card.appendChild(chipRow);
+        card.appendChild(detailList);
+        container.appendChild(card);
+      });
+    }
     function renderGuidance(container, keys) {
       container.innerHTML = "";
       keys.forEach(key => {
@@ -1551,12 +2421,14 @@ How this version works
       });
     }
 
-    function showEmptyState() {
+    function showEmptyState(entryMode = getSelectedEntryMode()) {
       showResults(["summary-panel"]);
       announceStatus("Add some food information first, then run the guide again.");
       summaryText.textContent = "There is nothing to analyse yet because the meal entry is empty.";
       renderPills(quickTags, ["No input provided"]);
-      renderScorecard(scorecardList, []);
+      renderScoreVisuals(scoreVisualList, []);
+      renderScoreTable(scoreBreakdownBody, []);
+      renderMealPatterns(mealPatternsList, [], entryMode);
       renderSimpleList(strengthsList, ["Nothing to assess yet."]);
       renderSimpleList(gapsList, ["The food entry was empty."]);
       guidanceCards.innerHTML = "";
@@ -1572,7 +2444,9 @@ How this version works
       const payload = {
         mealText: mealInput.value,
         goal: goalSelect.value,
-        contexts: getSelectedContexts()
+        contexts: getSelectedContexts(),
+        entryMode: getSelectedEntryMode(),
+        structuredMeals: collectStructuredMeals()
       };
       localStorage.setItem("feedMeProperlyEntry", JSON.stringify(payload));
       hideResults();
@@ -1594,16 +2468,71 @@ How this version works
       document.querySelectorAll('input[name="context"]').forEach(input => {
         input.checked = Array.isArray(payload.contexts) ? payload.contexts.includes(input.value) : false;
       });
+      const savedMode = payload.entryMode || "quick";
+      entryModeInputs.forEach(input => {
+        input.checked = input.value === savedMode;
+      });
+      setEntryMode(savedMode);
+      populateStructuredMeals(Array.isArray(payload.structuredMeals) ? payload.structuredMeals : []);
       hideResults();
       announceStatus("Saved entry loaded. Run the analysis when you are ready.");
-      mealInput.focus();
+      if (savedMode === "structured") {
+        const firstStructuredInput = structuredEntryPanel.querySelector('input[type="text"]');
+        if (firstStructuredInput) firstStructuredInput.focus();
+      } else {
+        mealInput.focus();
+      }
     }
 
+
+
+    function populateStructuredMeals(savedMeals = []) {
+      MEAL_DEFINITIONS.forEach(meal => {
+        const list = document.querySelector(`[data-meal-items="${meal.key}"]`);
+        const timeInput = document.getElementById(`meal-time-${meal.key}`);
+        if (!list || !timeInput) return;
+        list.innerHTML = "";
+        const savedMeal = savedMeals.find(item => item.key === meal.key);
+        timeInput.value = savedMeal && savedMeal.time ? savedMeal.time : "";
+        if (savedMeal && Array.isArray(savedMeal.items) && savedMeal.items.length) {
+          savedMeal.items.forEach(item => addMealRow(meal.key, item.text || "", item.amount || "medium"));
+        } else {
+          addMealRow(meal.key);
+        }
+      });
+    }
     function insertSample() {
       mealInput.value = "Breakfast was muesli with Greek yoghurt and blueberries. Later I had a latte. Lunch was a wholegrain wrap with chicken, tomato, capsicum, spinach, avocado, and cheese. In the afternoon I had a peach and a small handful of cashews.";
       goalSelect.value = "general";
       document.querySelectorAll('input[name="context"]').forEach(input => { input.checked = false; });
-      mealInput.focus();
+      entryModeInputs.forEach(input => {
+        input.checked = input.value === "structured";
+      });
+      setEntryMode("structured");
+      populateStructuredMeals([
+        { key: "breakfast", time: "7:30 am", items: [
+          { text: "muesli", amount: "medium" },
+          { text: "Greek yoghurt", amount: "medium" },
+          { text: "blueberries", amount: "small" },
+          { text: "latte", amount: "medium" }
+        ]},
+        { key: "lunch", time: "12:30 pm", items: [
+          { text: "wholegrain wrap", amount: "medium" },
+          { text: "chicken", amount: "medium" },
+          { text: "tomato", amount: "small" },
+          { text: "capsicum", amount: "small" },
+          { text: "spinach", amount: "small" },
+          { text: "avocado", amount: "small" },
+          { text: "cheese", amount: "small" }
+        ]},
+        { key: "afternoon-snack", time: "3:30 pm", items: [
+          { text: "peach", amount: "medium" },
+          { text: "cashews", amount: "small" }
+        ]}
+      ]);
+      const firstStructuredInput = structuredEntryPanel.querySelector('input[type="text"]');
+      if (firstStructuredInput) firstStructuredInput.focus();
+      announceStatus("Sample structured day loaded.");
     }
 
     function exportResults() {
@@ -1614,19 +2543,33 @@ How this version works
         return;
       }
 
+      const currentMode = getSelectedEntryMode();
+      const structuredMealLines = currentMode === "structured"
+        ? collectStructuredMeals().filter(meal => meal.items.length).flatMap(meal => {
+            const header = `${meal.label}${meal.time ? ` at ${meal.time}` : ""}:`;
+            const items = meal.items.map(item => `  - ${formatAmountLabel(item.amount)} ${item.text}`);
+            return [header, ...items];
+          })
+        : [];
+
       const resourceLines = Array.from(resourcesList.querySelectorAll("a")).map(link => `- ${link.textContent}: ${link.href}`);
       const blocks = [
         "Feed Me Properly export",
         "",
-        `Meal entry: ${mealInput.value.trim()}`,
+        `Entry mode: ${currentMode}`,
+        `Meal entry: ${currentMode === "structured" ? buildQuickTextFromMeals(collectStructuredMeals()) : mealInput.value.trim()}`,
+        ...(structuredMealLines.length ? ["", "Structured meals:", ...structuredMealLines] : []),
         `Goal: ${GOAL_CONFIG[goalSelect.value].title}`,
         `Contexts: ${getSelectedContexts().join(", ") || "None selected"}`,
         "",
         "Quick read:",
         summaryText.textContent,
         "",
-        "Pattern scorecard:",
-        ...Array.from(scorecardList.querySelectorAll("li")).map(li => `- ${li.textContent.replace(/\s+/g, " ").trim()}`),
+        "Pattern profile breakdown:",
+        ...Array.from(scoreBreakdownBody.querySelectorAll("tr")).map(row => `- ${row.textContent.replace(/\s+/g, " ").trim()}`),
+        "",
+        "Meal-by-meal read:",
+        ...Array.from(mealPatternsList.querySelectorAll(".meal-pattern-card")).map(card => `- ${card.textContent.replace(/\s+/g, " ").trim()}`),
         "",
         "What is working:",
         ...Array.from(strengthsList.querySelectorAll("li")).map(li => `- ${li.textContent}`),
@@ -1658,9 +2601,30 @@ How this version works
       URL.revokeObjectURL(url);
     }
 
+    ensureInitialMealRows();
+    setEntryMode(getSelectedEntryMode());
+    entryModeInputs.forEach(input => {
+      input.addEventListener("change", event => {
+        setEntryMode(event.target.value, true);
+        hideResults();
+      });
+    });
+    addMealItemButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const mealKey = button.dataset.mealKey;
+        addMealRow(mealKey, "", "medium", true);
+        announceMealBuilder(`Added a new item row to ${getMealLabel(mealKey)}.`);
+      });
+    });
+
     form.addEventListener("submit", analyseEntry);
     form.addEventListener("reset", () => {
       window.setTimeout(() => {
+        MEAL_DEFINITIONS.forEach(meal => {
+          const timeInput = document.getElementById(`meal-time-${meal.key}`);
+          if (timeInput) timeInput.value = "";
+        });
+        populateStructuredMeals([]);
         hideResults();
       }, 0);
     });
